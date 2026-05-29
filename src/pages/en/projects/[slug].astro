@@ -1,0 +1,141 @@
+---
+import Layout from '../../../layouts/Layout.astro'
+import { projects, getProjectBySlug, getProjectContent } from '../../../data/projects'
+import { useTranslations } from '../../../i18n/utils'
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug } }))
+}
+
+const { slug } = Astro.params
+const project = getProjectBySlug(slug)
+if (!project) return Astro.redirect('/404')
+
+const lang = 'en' as const
+const t = useTranslations(lang)
+const content = getProjectContent(project, lang)
+---
+
+<Layout lang={lang} title={`${content.title} — Marco Botrugno`} description={content.description}>
+
+  <div class="back-bar">
+    <a href="/en/#projects" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      {t('project.back')}
+    </a>
+  </div>
+
+  <section class="proj-hero dot-grid">
+    <div class="proj-container">
+      <div class="proj-hero-inner fade-up">
+        <p class="section-label" style="margin-bottom: 1.25rem;">{t('project.label')}</p>
+        <h1 class="proj-title">{content.title}</h1>
+        <p class="proj-tagline">{content.tagline}</p>
+
+        <div class="proj-tags">
+          {project.tags.map(tag => <span class="badge badge-gray">{tag}</span>)}
+        </div>
+
+        <div class="proj-hero-links">
+          {project.links.github && (
+            <a href={project.links.github} target="_blank" rel="noopener noreferrer" class="btn-outline" style="gap: 0.6rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+          )}
+          {project.links.live && (
+            <a href={project.links.live} target="_blank" rel="noopener noreferrer" class="btn-red">{t('project.cta.live')}</a>
+          )}
+          {(project.links.appStore || project.links.playStore) && (
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              {project.links.appStore && (
+                <a href={project.links.appStore} target="_blank" rel="noopener noreferrer" class="store-btn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  App Store
+                </a>
+              )}
+              {project.links.playStore && (
+                <a href={project.links.playStore} target="_blank" rel="noopener noreferrer" class="store-btn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.22.98.15l12.08-6.98-2.76-2.76-10.3 9.59zM.32 1.28C.12 1.6 0 2.01 0 2.52v18.96c0 .51.12.92.33 1.24l.07.06 10.63-10.63v-.25L.39 1.22l-.07.06zM20.62 9.8l-2.98-1.72-3.09 3.08 3.09 3.08 3-1.73c.86-.5.86-1.31-.02-1.71zM3.18.24L15.28 7.2l-2.76 2.76L2.2.37A1.22 1.22 0 013.18.24z"/></svg>
+                  Play Store
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="proj-container proj-content-wrap">
+
+    <div class="proj-section fade-up">
+      <h2 class="proj-section-title">{t('project.overview')}</h2>
+      <div class="proj-long-desc">
+        {content.longDescription.split('\n\n').map(paragraph => <p>{paragraph}</p>)}
+      </div>
+    </div>
+
+    <div class="section-divider" style="margin: 3rem 0;"></div>
+
+    <div class="proj-section fade-up delay-1">
+      <h2 class="proj-section-title">{t('project.features')}</h2>
+      <ul class="proj-features">
+        {content.features.map(feature => (
+          <li class="proj-feature-item">
+            <span class="proj-feature-dot"></span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="section-divider" style="margin: 3rem 0;"></div>
+
+    <div class="proj-section fade-up delay-2">
+      <h2 class="proj-section-title">{t('project.stack')}</h2>
+      <div class="proj-stack-grid">
+        {project.tags.map(tag => (
+          <div class="proj-stack-item">
+            <span class="proj-stack-dot"></span>
+            <span class="proj-stack-name">{tag}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="proj-cta fade-up delay-3">
+      <a href="/en/#projects" class="btn-outline">{t('project.cta.all')}</a>
+      {project.links.github && (
+        <a href={project.links.github} target="_blank" rel="noopener noreferrer" class="btn-red">{t('project.cta.github')}</a>
+      )}
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .back-bar { padding: 5.25rem 1.5rem 0; max-width: 1100px; margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.875rem; text-decoration: none; transition: color 0.2s; }
+  .back-link:hover { color: var(--text); }
+  .proj-hero { padding: 5rem 1.5rem 4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .proj-container { max-width: 860px; margin: 0 auto; }
+  .proj-hero-inner { display: flex; flex-direction: column; gap: 0; }
+  .proj-title { font-size: clamp(2.2rem, 6vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
+  .proj-tagline { font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .proj-hero-links { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .proj-content-wrap { padding: 4rem 1.5rem 6rem; }
+  .proj-section { margin-bottom: 0; }
+  .proj-section-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+  .proj-long-desc { display: flex; flex-direction: column; gap: 1rem; }
+  .proj-long-desc p { font-size: 1rem; line-height: 1.75; color: #c4c4c4; }
+  .proj-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem; }
+  .proj-feature-item { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.95rem; line-height: 1.6; color: #c4c4c4; }
+  .proj-feature-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 0.55rem; }
+  .proj-stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+  .proj-stack-item { display: flex; align-items: center; gap: 0.75rem; background: var(--surface); border: 1px solid rgba(255,255,255,0.07); border-radius: 0.5rem; padding: 0.75rem 1rem; }
+  .proj-stack-dot { width: 3px; height: 20px; background: linear-gradient(180deg, var(--red), var(--blue)); border-radius: 2px; flex-shrink: 0; }
+  .proj-stack-name { font-size: 0.875rem; font-weight: 600; }
+  .proj-cta { margin-top: 4rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+</style>

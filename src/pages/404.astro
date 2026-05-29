@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const backHref = lang === 'en' ? '/en/' : '/'
+const backLabel = lang === 'en' ? '← Back to home' : '← Torna alla home'
+const heading = lang === 'en' ? 'Page not found.' : 'Pagina non trovata.'
+const subtext = lang === 'en'
+  ? "This URL doesn't exist or was moved."
+  : "Questo URL non esiste o è stato spostato."
+---
+
+<Layout lang={lang} title={`404 — ${t('meta.title')}`}>
+  <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.5rem; text-align: center;">
+    <div>
+      <p style="font-family: 'Syne', sans-serif; font-size: clamp(6rem, 20vw, 12rem); font-weight: 800; line-height: 1; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--red), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+        404
+      </p>
+      <h1 style="font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 800; color: var(--text); margin-top: 0.5rem; letter-spacing: -0.02em;">
+        {heading}
+      </h1>
+      <p style="color: var(--muted); font-size: 1rem; margin-top: 0.75rem; margin-bottom: 2.5rem;">
+        {subtext}
+      </p>
+      <a href={backHref} class="btn-red">{backLabel}</a>
+    </div>
+  </section>
+</Layout>

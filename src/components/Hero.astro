@@ -1,0 +1,62 @@
+---
+import type { Lang } from '../i18n/ui'
+import { useTranslations } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+const yearsOfExperience = new Date().getFullYear() - 2022
+---
+
+<section
+  id="home"
+  class="dot-grid"
+  style="min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 1.5rem 5rem;"
+>
+  <div style="position: absolute; top: 20%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(204,20,20,0.07) 0%, transparent 70%); pointer-events: none;"></div>
+  <div style="position: absolute; bottom: 20%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(18,64,204,0.07) 0%, transparent 70%); pointer-events: none;"></div>
+
+  <div style="max-width: 1100px; margin: 0 auto; width: 100%;">
+
+    <p class="fade-up" style="font-size: 0.95rem; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem;">
+      {t('hero.eyebrow')}
+    </p>
+
+    <h1 class="fade-up delay-1" style="font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem;">
+      <span style="color: var(--text);">Marco</span><br />
+      <span class="gradient-text">Botrugno</span>
+    </h1>
+
+    <p class="fade-up delay-2" style="font-size: 1.15rem; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem;">
+      {t('hero.bio')}
+      <span style="color: var(--text); font-style: italic;">{t('hero.bio.highlight')}</span>{t('hero.bio.end')}
+    </p>
+
+    <div class="fade-up delay-3" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem;">
+      <a href="#projects" class="btn-red">{t('hero.cta.projects')}</a>
+      <a href="#contact" class="btn-outline">{t('hero.cta.contact')}</a>
+    </div>
+
+    <div class="fade-up delay-4" style="display: flex; gap: 2.5rem; flex-wrap: wrap;">
+      <div>
+        <p style="font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--text);">{yearsOfExperience}+</p>
+        <p style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;">{t('hero.stat.experience')}</p>
+      </div>
+      <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+      <div>
+        <p style="font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--text);">2</p>
+        <p style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;">{t('hero.stat.stores')}</p>
+      </div>
+      <div style="width: 1px; background: rgba(255,255,255,0.08);"></div>
+      <div>
+        <p style="font-family: 'Syne', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--text);">Full</p>
+        <p style="font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;">Stack</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+    <span style="font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;">{t('hero.scroll')}</span>
+    <div style="width: 1px; height: 40px; background: linear-gradient(to bottom, var(--red), transparent);"></div>
+  </div>
+</section>

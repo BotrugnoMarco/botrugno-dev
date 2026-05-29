@@ -1,0 +1,73 @@
+---
+import type { Lang } from '../i18n/ui'
+import { useTranslations } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+const age = new Date().getFullYear() - 2001
+
+const domains = [
+  { title: 'Frontend', skills: ['Vue 3', 'Nuxt.js', 'TypeScript', 'Vite', 'HTML & CSS', 'Vuex', 'Leaflet'] },
+  { title: 'Backend',  skills: ['Node.js', 'Express', 'MySQL', 'Redis', 'Socket.io', 'PHP', 'Yii', 'JWT'] },
+  { title: 'Mobile',   skills: ['Ionic', 'Capacitor', 'Firebase', 'Android'] },
+  { title: 'Tools',    skills: ['Docker', 'Git', 'C / C++', 'Java'] },
+]
+
+---
+
+<div class="section-divider"></div>
+
+<section id="about" class="about-section">
+  <div class="section-container">
+
+    <div class="section-header fade-up">
+      <p class="section-label">{t('about.label')}</p>
+      <h2 class="section-title">
+        {t('about.title')}<br /><span class="gradient-text">{t('about.title.gradient')}</span>
+      </h2>
+    </div>
+
+    <div class="about-grid">
+
+      <div class="fade-up delay-1">
+        <p class="about-bio">
+          {t('about.bio1.pre')} {age} {t('about.bio1.pre2')}
+          <span class="about-hl-red"> {t('about.bio1.highlight')} </span>
+          {t('about.bio1.post')}
+        </p>
+        <p class="about-bio">{t('about.bio2')}</p>
+        <p class="about-bio">{t('about.bio3')}</p>
+
+        <div style="margin-top: 2rem;">
+          <a
+            href="https://github.com/BotrugnoMarco"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-outline"
+            style="padding: 0.6rem 1.25rem; font-size: 0.875rem;"
+          >
+            GitHub ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="fade-up delay-2">
+        <div class="about-domains">
+          {domains.map(domain => (
+            <div class="about-domain">
+              <p class="about-domain-title">{domain.title}</p>
+              <div class="about-domain-items">
+                {domain.skills.map(skill => (
+                  <span class="about-skill">{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

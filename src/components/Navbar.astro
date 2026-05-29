@@ -1,0 +1,132 @@
+---
+import type { Lang } from '../i18n/ui'
+import { useTranslations, getAlternatePath } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const alternateLang = lang === 'it' ? 'en' : 'it'
+const alternatePath = getAlternatePath(lang, Astro.url)
+
+const home = lang === 'en' ? '/en/' : '/'
+
+const links = [
+  { label: t('nav.about'),      href: `${home}#about` },
+  { label: t('nav.matchready'), href: `${home}#matchready` },
+  { label: t('nav.projects'),   href: `${home}#projects` },
+  { label: t('nav.contact'),    href: `${home}#contact` },
+  { label: t('nav.cv'),         href: lang === 'en' ? '/en/cv' : '/cv' },
+]
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; height: 4rem; display: flex; align-items: center; justify-content: space-between;">
+
+    <a href={lang === 'en' ? '/en/' : '/'} style="text-decoration: none; display: flex; align-items: center;">
+      <img src="/logo.png" alt="Marco Botrugno" style="height: 36px; width: auto;" />
+    </a>
+
+    <ul style="display: flex; align-items: center; gap: 2rem; list-style: none; margin: 0; padding: 0;" class="nav-links">
+      {links.map(link => (
+        <li>
+          <a href={link.href} class="nav-link">{link.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <div style="display: flex; align-items: center; gap: 0.75rem;" class="nav-cta-desktop">
+      <!-- Language switcher -->
+      <a href={alternatePath} class="lang-switch" aria-label={`Switch to ${alternateLang.toUpperCase()}`}>
+        <span class={lang === 'it' ? 'lang-active' : 'lang-inactive'}>IT</span>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span class={lang === 'en' ? 'lang-active' : 'lang-inactive'}>EN</span>
+      </a>
+      <a
+        href="https://github.com/BotrugnoMarco"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline nav-cta"
+        style="padding: 0.5rem 1.25rem; font-size: 0.875rem;"
+      >
+        GitHub ↗
+      </a>
+    </div>
+
+    <button id="menu-btn" aria-label="Menu" class="menu-btn" style="display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px;">
+      <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s;"></span>
+      <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s;"></span>
+      <span class="bar" style="display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s;"></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" style="display: none; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(8,8,8,0.98); padding: 1rem 1.5rem 1.5rem;">
+    {links.map(link => (
+      <a href={link.href} class="mobile-nav-link" style="display: block; padding: 0.75rem 0; font-size: 1rem; font-weight: 500; color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05);">
+        {link.label}
+      </a>
+    ))}
+    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1rem;">
+      <a href={alternatePath} class="lang-switch">
+        <span class={lang === 'it' ? 'lang-active' : 'lang-inactive'}>IT</span>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span class={lang === 'en' ? 'lang-active' : 'lang-inactive'}>EN</span>
+      </a>
+      <a href="https://github.com/BotrugnoMarco" target="_blank" rel="noopener noreferrer" class="btn-outline">
+        GitHub ↗
+      </a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  @media (max-width: 768px) {
+    .nav-links { display: none !important; }
+    .nav-cta-desktop { display: none !important; }
+    #menu-btn { display: flex !important; }
+  }
+  .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-link:hover { color: var(--text); }
+  .mobile-nav-link:hover { color: var(--text) !important; }
+
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .lang-active  { color: var(--text); }
+  .lang-inactive { color: var(--muted); transition: color 0.2s; }
+  .lang-switch:hover .lang-inactive { color: var(--text); }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar')
+  const menuBtn = document.getElementById('menu-btn')
+  const mobileMenu = document.getElementById('mobile-menu')
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar!.style.background = 'rgba(8,8,8,0.92)'
+      navbar!.style.backdropFilter = 'blur(12px)'
+      navbar!.style.borderBottom = '1px solid rgba(255,255,255,0.06)'
+    } else {
+      navbar!.style.background = 'transparent'
+      navbar!.style.backdropFilter = 'none'
+      navbar!.style.borderBottom = 'none'
+    }
+  })
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu!.style.display === 'block'
+    mobileMenu!.style.display = isOpen ? 'none' : 'block'
+  })
+
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => { mobileMenu.style.display = 'none' })
+  })
+</script>

@@ -1,0 +1,138 @@
+---
+import type { Lang } from '../i18n/ui'
+import { useTranslations } from '../i18n/utils'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+
+const PLAY_STORE = 'https://play.google.com/store/apps/details?id=dev.botrugno.matchday'
+const APP_STORE  = 'https://apps.apple.com/it/app/match-ready-organizza-partite/id6761014180'
+
+const features = [
+  { icon: '📅', label: t('mr.feat1.label'), desc: t('mr.feat1.desc') },
+  { icon: '⚡', label: t('mr.feat2.label'), desc: t('mr.feat2.desc') },
+  { icon: '🏆', label: t('mr.feat3.label'), desc: t('mr.feat3.desc') },
+  { icon: '💬', label: t('mr.feat4.label'), desc: t('mr.feat4.desc') },
+  { icon: '📍', label: t('mr.feat5.label'), desc: t('mr.feat5.desc') },
+  { icon: '🔔', label: t('mr.feat6.label'), desc: t('mr.feat6.desc') },
+]
+---
+
+<div class="section-divider"></div>
+
+<section id="matchready" class="mr-section">
+  <div class="section-container">
+
+    <div class="mr-header section-header fade-up">
+      <p class="section-label">{t('mr.label')}</p>
+      <h2 class="section-title">
+        {t('mr.title')}<br /><span class="gradient-text">{t('mr.title.gradient')}</span>
+      </h2>
+    </div>
+
+    <div class="mr-inner fade-up delay-1">
+
+      <div>
+        <div class="mr-app-header">
+          <div class="mr-app-icon">🏆</div>
+          <div>
+            <p class="mr-app-name">MatchReady</p>
+            <p class="mr-app-sub">{t('mr.app.sub')}</p>
+          </div>
+        </div>
+
+        <p class="mr-description">{t('mr.description')}</p>
+
+        <div class="mr-tech">
+          <span class="badge badge-blue">Vue 3</span>
+          <span class="badge badge-blue">Ionic</span>
+          <span class="badge badge-gray">Capacitor</span>
+          <span class="badge badge-blue">Node.js</span>
+          <span class="badge badge-blue">MySQL</span>
+          <span class="badge badge-red">Firebase</span>
+          <span class="badge badge-gray">Socket.io</span>
+        </div>
+
+        <div class="mr-stores">
+          <a href={APP_STORE} target="_blank" rel="noopener noreferrer" class="mr-store-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <div>
+              <p class="mr-store-label-small">{t('mr.available')}</p>
+              <p class="mr-store-label-main">App Store</p>
+            </div>
+          </a>
+
+          <a href={PLAY_STORE} target="_blank" rel="noopener noreferrer" class="mr-store-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3.18 23.76c.3.17.64.22.99.14l12.12-6.99-2.54-2.54-10.57 9.39zm-1.76-20.3C1.14 3.8 1 4.2 1 4.68v14.62c0 .48.14.88.43 1.22l.06.06 8.19-8.19v-.19L1.48 3.4l-.06.06zM21.1 10.28l-2.35-1.36-2.83 2.83 2.83 2.83 2.37-1.37c.68-.39.68-1.03-.02-1.93zM4.17.24L16.29 7.23l-2.54 2.54L3.18.38c.35-.2.71-.21.99-.14z"/>
+            </svg>
+            <div>
+              <p class="mr-store-label-small">{t('mr.available')}</p>
+              <p class="mr-store-label-main">Play Store</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="mr-phone-wrap">
+        <div class="mr-phone">
+          <div class="mr-phone-screen">
+            <div class="mr-phone-topbar">
+              <span class="mr-phone-topbar-title">MatchReady</span>
+              <span class="mr-phone-topbar-dot"></span>
+            </div>
+            <div class="mr-phone-match-card">
+              <p class="mr-phone-match-title">{t('mr.mock.match')}</p>
+              <div class="mr-phone-teams">
+                <span class="mr-phone-team-name">Team A</span>
+                <span class="mr-phone-score">3 · 2</span>
+                <span class="mr-phone-team-name">Team B</span>
+              </div>
+            </div>
+            <div class="mr-phone-pitch">
+              <div class="mr-pitch-circle"></div>
+              <div class="mr-player mr-player-red" style="top:12%;left:50%;transform:translateX(-50%)">1</div>
+              <div class="mr-player mr-player-red" style="top:28%;left:18%">3</div>
+              <div class="mr-player mr-player-red" style="top:28%;left:50%;transform:translateX(-50%)">5</div>
+              <div class="mr-player mr-player-red" style="top:28%;right:18%">4</div>
+              <div class="mr-player mr-player-red" style="top:44%;left:26%">8</div>
+              <div class="mr-player mr-player-red" style="top:44%;right:26%">10</div>
+              <div class="mr-player mr-player-blue" style="bottom:12%;left:50%;transform:translateX(-50%)">1</div>
+              <div class="mr-player mr-player-blue" style="bottom:28%;left:18%">2</div>
+              <div class="mr-player mr-player-blue" style="bottom:28%;left:50%;transform:translateX(-50%)">6</div>
+              <div class="mr-player mr-player-blue" style="bottom:28%;right:18%">3</div>
+              <div class="mr-player mr-player-blue" style="bottom:44%;left:26%">7</div>
+              <div class="mr-player mr-player-blue" style="bottom:44%;right:26%">11</div>
+            </div>
+            <div class="mr-phone-stats">
+              <div class="mr-phone-stat-card">
+                <p class="mr-phone-stat-val">12</p>
+                <p class="mr-phone-stat-key">{t('mr.mock.players')}</p>
+              </div>
+              <div class="mr-phone-stat-card">
+                <p class="mr-phone-stat-val">⭐ 8.4</p>
+                <p class="mr-phone-stat-key">MVP rating</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mr-phone-glow"></div>
+      </div>
+
+    </div>
+
+    <div class="mr-features fade-up delay-2">
+      {features.map(f => (
+        <div class="mr-feature-item">
+          <div class="mr-feature-icon">{f.icon}</div>
+          <p class="mr-feature-label">{f.label}</p>
+          <p class="mr-feature-desc">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
