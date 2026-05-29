@@ -33,6 +33,6 @@ else
 fi
 
 # 4. Verifica config e ricarica nginx
-nginx -t && systemctl reload nginx
+sudo nginx -t && sudo systemctl reload nginx
 
 echo "✓ Deploy completato — https://$DOMAIN"
