@@ -5,9 +5,22 @@ import About from '../components/About.astro'
 import MatchReady from '../components/MatchReady.astro'
 import Projects from '../components/Projects.astro'
 import Contact from '../components/Contact.astro'
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Marco Luigi Botrugno',
+  url: 'https://botrugno.dev',
+  jobTitle: 'Full-Stack Developer',
+  nationality: 'Italian',
+  sameAs: [
+    'https://github.com/BotrugnoMarco',
+    'https://www.linkedin.com/in/marco-luigi-botrugno-4332b21b7',
+  ],
+}
 ---
 
-<Layout lang="it">
+<Layout lang="it" schema={schema}>
   <Hero lang="it" />
   <About lang="it" />
   <MatchReady lang="it" />

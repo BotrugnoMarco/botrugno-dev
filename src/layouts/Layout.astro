@@ -8,6 +8,7 @@ interface Props {
   title?: string
   description?: string
   lang?: Lang
+  schema?: Record<string, unknown>
 }
 
 const lang: Lang = Astro.props.lang ?? getLangFromUrl(Astro.url)
@@ -16,21 +17,42 @@ const t = useTranslations(lang)
 const {
   title = t('meta.title'),
   description = t('meta.description'),
+  schema,
 } = Astro.props
+
+const SITE = 'https://botrugno.dev'
+const pathname = Astro.url.pathname
+const isEN = pathname.startsWith('/en')
+const itPath = isEN ? (pathname.slice(3) || '/') : pathname
+const enPath = isEN ? pathname : '/en' + pathname
+const canonicalUrl = `${SITE}${pathname}`
+const ogImage = `${SITE}/logo.png`
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="it" href={`${SITE}${itPath}`} />
+    <link rel="alternate" hreflang="en" href={`${SITE}${enPath}`} />
+    <link rel="alternate" hreflang="x-default" href={`${SITE}${itPath}`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/logo.png" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content={lang === 'it' ? 'it_IT' : 'en_US'} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

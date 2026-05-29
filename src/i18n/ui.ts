@@ -8,8 +8,8 @@ export type Lang = keyof typeof languages
 export const ui = {
   it: {
     // Meta
-    'meta.title': 'Marco Botrugno — Full-Stack Developer',
-    'meta.description': "Portfolio di Marco Botrugno, sviluppatore Full-Stack italiano e creator dell'app MatchReady.",
+    'meta.title': 'Marco Luigi Botrugno — Full-Stack Developer',
+    'meta.description': "Portfolio di Marco Luigi Botrugno, sviluppatore Full-Stack italiano specializzato in Vue, React, Node.js e sviluppo mobile con Ionic.",
 
     // Navbar
     'nav.about': 'Chi sono',
@@ -98,8 +98,8 @@ export const ui = {
 
   en: {
     // Meta
-    'meta.title': 'Marco Botrugno — Full-Stack Developer',
-    'meta.description': "Portfolio of Marco Botrugno, Italian Full-Stack Developer and creator of the MatchReady app.",
+    'meta.title': 'Marco Luigi Botrugno — Full-Stack Developer',
+    'meta.description': "Portfolio of Marco Luigi Botrugno, Italian Full-Stack Developer specialised in Vue, React, Node.js and mobile development with Ionic.",
 
     // Navbar
     'nav.about': 'About',
