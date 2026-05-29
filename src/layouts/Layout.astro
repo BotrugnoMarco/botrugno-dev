@@ -54,6 +54,13 @@ const ogImage = `${SITE}/logo.png`
     <meta name="twitter:image" content={ogImage} />
     {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
     <title>{title}</title>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-WZLJPGC5X0"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WZLJPGC5X0');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
