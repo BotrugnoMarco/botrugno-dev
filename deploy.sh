@@ -23,7 +23,16 @@ npm ci
 echo "→ Build..."
 npm run build
 
-# 3. Verifica config e ricarica nginx
+# 3. Copia CV (file locale, non nel repo)
+CV_SOURCE="/home/botadmin/CV_Marco_Luigi_Botrugno.pdf"
+if [ -f "$CV_SOURCE" ]; then
+  cp "$CV_SOURCE" "$APP_DIR/dist/"
+  echo "→ CV copiato in dist/"
+else
+  echo "⚠ CV non trovato in $CV_SOURCE — caricalo manualmente"
+fi
+
+# 4. Verifica config e ricarica nginx
 nginx -t && systemctl reload nginx
 
-echo "✓ Deploy completato — http://$DOMAIN"
+echo "✓ Deploy completato — https://$DOMAIN"
