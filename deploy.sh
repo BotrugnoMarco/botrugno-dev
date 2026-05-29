@@ -15,6 +15,7 @@ else
   echo "→ Clone del repo..."
   git clone "$REPO" "$APP_DIR"
 fi
+chmod +x "$APP_DIR/deploy.sh"
 
 # 2. Installa dipendenze e build
 cd "$APP_DIR"
