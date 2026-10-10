@@ -30,7 +30,7 @@ export const ui = {
     'cv.present': 'Presente',
 
     // Hero
-    'hero.eyebrow': 'Full-Stack Web Developer',
+    'hero.eyebrow': 'Full-Stack Developer',
     'hero.bio': 'Trasformo logiche complesse in prodotti digitali concreti. Progetto, sviluppo e gestisco interi ecosistemi software in totale autonomia,',
     'hero.bio.highlight': "dal server all'app nativa",
     'hero.bio.end': '.',
@@ -120,7 +120,7 @@ export const ui = {
     'cv.present': 'Present',
 
     // Hero
-    'hero.eyebrow': 'Full-Stack Web Developer',
+    'hero.eyebrow': 'Full-Stack Developer',
     'hero.bio': 'I turn complex logic into concrete digital products. I design, build and manage entire software ecosystems independently,',
     'hero.bio.highlight': 'from server to native app',
     'hero.bio.end': '.',
