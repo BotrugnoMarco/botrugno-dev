@@ -26,6 +26,7 @@ const browser = await chromium.launch()
 const page = await browser.newPage()
 for (const { src, out } of jobs) {
   await page.goto(pathToFileURL(path.join(here, src)).href, { waitUntil: 'networkidle' })
+  await page.evaluate(() => document.fonts.ready)
   await page.pdf({ path: path.join(here, out), format: 'A4', printBackground: true, preferCSSPageSize: true })
   console.log(`✓ ${src} → ${path.normalize(out)}`)
 }
