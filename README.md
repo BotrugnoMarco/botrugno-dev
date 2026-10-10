@@ -38,7 +38,7 @@ public/
 └── CV_Marco_Luigi_Botrugno_EN.pdf # CV inglese
 cv/                             # Sorgente del CV in PDF (HTML + foto + logo)
 scripts/og/                     # Sorgente dell'immagine og.png
-docs/nginx-botrugno.dev.conf    # Header di sicurezza e cache per nginx
+docs/nginx/                     # Configurazione nginx del server (sito + header di sicurezza)
 .github/                        # CI (build + controllo link) e Dependabot
 ```
 
@@ -80,4 +80,4 @@ npm run cv                                               # rigenera i due PDF in
 ## Deploy
 
 `deploy.sh` sul server fa pull, `npm ci`, build e ricarica nginx. Il CV arriva in `dist/` con la build:
-non serve più copiarlo a mano. Header di sicurezza e cache: vedi `docs/nginx-botrugno.dev.conf`.
+non serve più copiarlo a mano. Configurazione nginx (header di sicurezza, cache, 404): vedi `docs/nginx/`.

@@ -27,6 +27,9 @@ export const ui = {
     'cv.skills': 'Competenze',
     'cv.languages': 'Lingue',
     'cv.hobbies': 'Hobby e Interessi',
+    'cv.projects': 'Progetti',
+    'cv.role': 'Full-Stack Developer',
+    'cv.summary': "Sviluppatore full-stack con oltre 4 anni di esperienza. Lavoro su front-end, back-end e app mobile, e seguo i progetti dal database fino alla pubblicazione sugli store. Studio Informatica all'Università di Bari.",
     'cv.present': 'Presente',
 
     // Hero
@@ -117,6 +120,9 @@ export const ui = {
     'cv.skills': 'Skills',
     'cv.languages': 'Languages',
     'cv.hobbies': 'Hobbies & Interests',
+    'cv.projects': 'Projects',
+    'cv.role': 'Full-Stack Developer',
+    'cv.summary': 'Full-stack developer with over 4 years of experience. I work on front-end, back-end and mobile apps, and I take projects from the database all the way to publication on the app stores. I study Computer Science at the University of Bari.',
     'cv.present': 'Present',
 
     // Hero
