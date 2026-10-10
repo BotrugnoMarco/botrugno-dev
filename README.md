@@ -31,9 +31,15 @@ src/
     └── components.css
 public/
 ├── logo.png
+├── og.png                      # Anteprima 1200×630 per i link condivisi
 ├── favicon.ico
 ├── robots.txt
-└── CV_Marco_Luigi_Botrugno.pdf
+├── CV_Marco_Luigi_Botrugno.pdf    # CV italiano, generato da cv/ (vedi sotto)
+└── CV_Marco_Luigi_Botrugno_EN.pdf # CV inglese
+cv/                             # Sorgente del CV in PDF (HTML + foto + logo)
+scripts/og/                     # Sorgente dell'immagine og.png
+docs/nginx-botrugno.dev.conf    # Header di sicurezza e cache per nginx
+.github/                        # CI (build + controllo link) e Dependabot
 ```
 
 ## Pagine
@@ -60,3 +66,18 @@ npm run preview   # anteprima della build
 
 1. Aggiungere una voce all'array `projects` in `src/data/projects.ts` con i campi `slug`, `tags`, `links`, `it` e `en`
 2. La pagina detail viene generata automaticamente da `[slug].astro`
+
+## CV in PDF
+
+Il PDF pubblico non contiene dati personali (niente indirizzo né telefono) ed è versionato in `public/`.
+Per aggiornarli modifica `cv/cv-it.html` e `cv/cv-en.html`, poi:
+
+```bash
+npm i -D playwright && npx playwright install chromium   # solo la prima volta
+npm run cv                                               # rigenera i due PDF in public/
+```
+
+## Deploy
+
+`deploy.sh` sul server fa pull, `npm ci`, build e ricarica nginx. Il CV arriva in `dist/` con la build:
+non serve più copiarlo a mano. Header di sicurezza e cache: vedi `docs/nginx-botrugno.dev.conf`.

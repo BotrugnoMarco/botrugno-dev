@@ -14,6 +14,8 @@ export function getLangFromUrl(url: URL): Lang {
 
 export function getAlternatePath(lang: Lang, url: URL): string {
   const path = url.pathname
+  // La 404 esiste in una sola lingua: il cambio lingua porta alla home
+  if (/^(\/en)?\/404\/?$/.test(path)) return lang === 'it' ? '/en/' : '/'
   if (lang === 'it') {
     // Siamo in italiano, il link va alla versione inglese
     return `/en${path === '/' ? '/' : path}`

@@ -27,7 +27,7 @@ const projectBase = lang === 'en' ? '/en/projects' : '/projects'
         const content = getProjectContent(project, lang)
         return (
           <a
-            href={`${projectBase}/${project.slug}`}
+            href={`${projectBase}/${project.slug}/`}
             class={`project-card fade-up delay-${Math.min(i + 1, 4)}`}
           >
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;">

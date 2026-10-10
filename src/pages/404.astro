@@ -13,7 +13,7 @@ const subtext = lang === 'en'
   : "Questo URL non esiste o è stato spostato."
 ---
 
-<Layout lang={lang} title={`404 — ${t('meta.title')}`}>
+<Layout lang={lang} title={`404 — ${t('meta.title')}`} noindex>
   <section style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.5rem; text-align: center;">
     <div>
       <p style="font-family: 'Syne', sans-serif; font-size: clamp(6rem, 20vw, 12rem); font-weight: 800; line-height: 1; letter-spacing: -0.04em; background: linear-gradient(135deg, var(--red), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">

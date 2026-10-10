@@ -8,6 +8,7 @@ const t = useTranslations(lang)
 
 const isIT = lang === 'it'
 const homeHref = isIT ? '/' : '/en/'
+const pdfHref = isIT ? '/CV_Marco_Luigi_Botrugno.pdf' : '/CV_Marco_Luigi_Botrugno_EN.pdf'
 
 const experience = isIT ? [
   {
@@ -15,41 +16,19 @@ const experience = isIT ? [
     role: 'Full-Stack Developer',
     company: 'BarbarHouse S.R.L.',
     location: 'Casarano (LE)',
-    note: 'Mid-level · Front-end & Back-end',
+    note: 'Sviluppo front-end e back-end.',
   },
   {
-    period: 'giu 2021 – set 2021',
-    role: 'Maître',
+    period: 'estati 2019 – 2021',
+    role: 'Maître, responsabile di sala',
     company: 'La Casarana Wellness Eco Resort',
     location: 'Presicce-Acquarica (LE)',
-    note: 'Responsabile di Sala',
+    note: 'Tre stagioni estive, prima come cameriere, poi vice-maître e infine responsabile della sala.',
   },
   {
-    period: 'giu 2020 – set 2020',
-    role: 'Cameriere',
-    company: 'La Casarana Wellness Eco Resort',
-    location: 'Presicce-Acquarica (LE)',
-    note: 'Vice-Maître',
-  },
-  {
-    period: 'lug 2019 – set 2019',
-    role: 'Cameriere',
-    company: 'La Casarana Wellness Eco Resort',
-    location: 'Presicce-Acquarica (LE)',
-  },
-  {
-    period: 'gen 2019 – feb 2019',
-    role: 'Tecnico informatico',
-    company: 'Diemme Service',
-    location: 'Casarano (LE)',
-    note: 'Alternanza scuola-lavoro',
-  },
-  {
-    period: 'feb 2018',
-    role: 'Tecnico informatico',
-    company: 'Ciemme Informatica',
-    location: 'Presicce (LE)',
-    note: 'Alternanza scuola-lavoro',
+    period: '2018 – 2019',
+    role: 'Tecnico informatico in alternanza scuola-lavoro',
+    company: 'Diemme Service, Casarano; Ciemme Informatica, Presicce',
   },
 ] : [
   {
@@ -57,41 +36,19 @@ const experience = isIT ? [
     role: 'Full-Stack Developer',
     company: 'BarbarHouse S.R.L.',
     location: 'Casarano (LE)',
-    note: 'Mid-level · Front-end & Back-end',
+    note: 'Front-end and back-end development.',
   },
   {
-    period: 'Jun 2021 – Sep 2021',
-    role: 'Maître',
+    period: 'summers 2019 – 2021',
+    role: "Maître d', dining room manager",
     company: 'La Casarana Wellness Eco Resort',
     location: 'Presicce-Acquarica (LE)',
-    note: 'Head Waiter / Floor Manager',
+    note: "Three summer seasons: first as a waiter, then assistant maître d', and finally in charge of the dining room.",
   },
   {
-    period: 'Jun 2020 – Sep 2020',
-    role: 'Waiter',
-    company: 'La Casarana Wellness Eco Resort',
-    location: 'Presicce-Acquarica (LE)',
-    note: 'Assistant Head Waiter',
-  },
-  {
-    period: 'Jul 2019 – Sep 2019',
-    role: 'Waiter',
-    company: 'La Casarana Wellness Eco Resort',
-    location: 'Presicce-Acquarica (LE)',
-  },
-  {
-    period: 'Jan 2019 – Feb 2019',
-    role: 'IT Technician',
-    company: 'Diemme Service',
-    location: 'Casarano (LE)',
-    note: 'School-work placement',
-  },
-  {
-    period: 'Feb 2018',
-    role: 'IT Technician',
-    company: 'Ciemme Informatica',
-    location: 'Presicce (LE)',
-    note: 'School-work placement',
+    period: '2018 – 2019',
+    role: 'IT technician, school work-experience program',
+    company: 'Diemme Service, Casarano; Ciemme Informatica, Presicce',
   },
 ]
 
@@ -144,10 +101,10 @@ const certifications = [
 ]
 
 const skills = [
-  { category: 'Frontend', items: ['HTML/CSS', 'JavaScript', 'Vue 3', 'React', 'Nuxt.js', 'Astro', 'Ionic', 'Bootstrap'] },
-  { category: 'Backend',  items: ['Node.js', 'Fastify', 'PHP', 'MySQL', 'Redis', 'Prisma', 'C/C++', 'Java', 'Yii'] },
+  { category: 'Frontend', items: ['Vue 3', 'React', 'Nuxt.js', 'Astro', 'TypeScript', 'JavaScript', 'HTML & CSS', 'Bootstrap'] },
+  { category: 'Backend',  items: ['Node.js', 'Fastify', 'PHP', 'Yii', 'MySQL', 'Redis', 'Prisma', 'Socket.io'] },
   { category: 'Mobile',   items: ['Ionic', 'Capacitor', 'Firebase', 'Android'] },
-  { category: 'Tools',    items: ['Git', 'Docker', 'Vite', 'Socket.io', 'LaTeX', 'Cisco Packet Tracer'] },
+  { category: isIT ? 'Linguaggi e strumenti' : 'Languages and tools', items: ['C / C++', 'Java', 'Python', 'Git', 'Docker', 'Vite', 'LaTeX'] },
 ]
 
 const languages = isIT ? [
@@ -174,7 +131,7 @@ const hobbies = isIT
         Marco Luigi <span class="gradient-text">Botrugno</span>
       </h1>
     </div>
-    <a href="/CV_Marco_Luigi_Botrugno.pdf" download class="btn-red cv-download">{t('cv.download')}</a>
+    <a href={pdfHref} download class="btn-red cv-download">{t('cv.download')}</a>
   </div>
 
   <!-- Esperienza -->
@@ -187,7 +144,7 @@ const hobbies = isIT
           <div class="cv-dot"></div>
           <div class="cv-content">
             <p class="cv-role">{item.role}</p>
-            <p class="cv-company">{item.company} · {item.location}</p>
+            <p class="cv-company">{item.company}{item.location && ` · ${item.location}`}</p>
             {item.note && <p class="cv-note">{item.note}</p>}
           </div>
         </div>

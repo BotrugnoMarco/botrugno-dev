@@ -14,9 +14,35 @@ if (!project) return Astro.redirect('/404')
 const lang = 'it' as const
 const t = useTranslations(lang)
 const content = getProjectContent(project, lang)
+
+const SITE = 'https://botrugno.dev'
+const pageUrl = `${SITE}/projects/${project.slug}/`
+const schema: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'botrugno.dev', item: 'https://botrugno.dev/' },
+      { '@type': 'ListItem', position: 2, name: content.title, item: pageUrl },
+    ],
+  },
+]
+if (project.links.appStore || project.links.playStore) {
+  schema.push({
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: content.title,
+    description: content.description,
+    url: pageUrl,
+    operatingSystem: 'iOS, Android',
+    applicationCategory: 'SportsApplication',
+    author: { '@type': 'Person', name: 'Marco Luigi Botrugno', url: SITE },
+    sameAs: [project.links.appStore, project.links.playStore].filter(Boolean),
+  })
+}
 ---
 
-<Layout lang={lang} title={`${content.title} — Marco Luigi Botrugno`} description={content.description}>
+<Layout lang={lang} title={`${content.title} — Marco Luigi Botrugno`} description={content.description} schema={schema}>
 
   <div class="back-bar">
     <a href="/#projects" class="back-link">

@@ -179,13 +179,13 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
 }
 
-/* Scroll fade-up animations */
-.fade-up {
+/* Scroll fade-up animations: nascosti solo se JS è attivo (classe .js su <html>, vedi Layout.astro) */
+.js .fade-up {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
-.fade-up.visible {
+.js .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -193,6 +193,17 @@ h1, h2, h3, h4 {
 .fade-up.delay-2 { transition-delay: 0.2s; }
 .fade-up.delay-3 { transition-delay: 0.3s; }
 .fade-up.delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  .js .fade-up { opacity: 1; transform: none; }
+}
 
 /* Section spacing */
 .section {

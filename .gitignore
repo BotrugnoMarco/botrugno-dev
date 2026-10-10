@@ -21,8 +21,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# CV con dati personali — tenere solo in locale
-public/CV_Marco_Luigi_Botrugno.pdf
 
 # jetbrains setting folder
 .idea/
