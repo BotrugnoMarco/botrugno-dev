@@ -46,21 +46,17 @@ if (project.links.appStore || project.links.playStore) {
 
   <div class="back-bar">
     <a href="/#projects" class="back-link">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       {t('project.back')}
     </a>
   </div>
 
-  <section class="proj-hero dot-grid">
+  <section class="proj-hero">
     <div class="proj-container">
       <div class="proj-hero-inner fade-up">
-        <p class="section-label" style="margin-bottom: 1.25rem;">{t('project.label')}</p>
         <h1 class="proj-title">{content.title}</h1>
         <p class="proj-tagline">{content.tagline}</p>
 
-        <div class="proj-tags">
-          {project.tags.map(tag => <span class="badge badge-gray">{tag}</span>)}
-        </div>
+        <p class="proj-tags tech-line">{project.tags.join(' · ')}</p>
 
         <div class="proj-hero-links">
           {project.links.github && (
@@ -120,14 +116,9 @@ if (project.links.appStore || project.links.playStore) {
 
     <div class="proj-section fade-up delay-2">
       <h2 class="proj-section-title">{t('project.stack')}</h2>
-      <div class="proj-stack-grid">
-        {project.tags.map(tag => (
-          <div class="proj-stack-item">
-            <span class="proj-stack-dot"></span>
-            <span class="proj-stack-name">{tag}</span>
-          </div>
-        ))}
-      </div>
+      <ul class="proj-stack-list">
+        {project.tags.map(tag => <li>{tag}</li>)}
+      </ul>
     </div>
 
     <div class="proj-cta fade-up delay-3">
@@ -144,14 +135,14 @@ if (project.links.appStore || project.links.playStore) {
   .back-bar { padding: 5.25rem 1.5rem 0; max-width: 1100px; margin: 0 auto; }
   .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--muted); font-size: 0.875rem; text-decoration: none; transition: color 0.2s; }
   .back-link:hover { color: var(--text); }
-  .proj-hero { padding: 5rem 1.5rem 4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .proj-container { max-width: 860px; margin: 0 auto; }
+  .proj-hero { padding: 5rem 0 4rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .proj-container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
   .proj-hero-inner { display: flex; flex-direction: column; gap: 0; }
   .proj-title { font-size: clamp(2.2rem, 6vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem; }
   .proj-tagline { font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
-  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .proj-tags { margin-bottom: 2rem; font-size: 0.9rem; }
   .proj-hero-links { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
-  .proj-content-wrap { padding: 4rem 1.5rem 6rem; }
+  .proj-content-wrap { padding-top: 4rem; padding-bottom: 6rem; }
   .proj-section { margin-bottom: 0; }
   .proj-section-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
   .proj-long-desc { display: flex; flex-direction: column; gap: 1rem; }
@@ -159,9 +150,6 @@ if (project.links.appStore || project.links.playStore) {
   .proj-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem; }
   .proj-feature-item { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.95rem; line-height: 1.6; color: #c4c4c4; }
   .proj-feature-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 0.55rem; }
-  .proj-stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
-  .proj-stack-item { display: flex; align-items: center; gap: 0.75rem; background: var(--surface); border: 1px solid rgba(255,255,255,0.07); border-radius: 0.5rem; padding: 0.75rem 1rem; }
-  .proj-stack-dot { width: 3px; height: 20px; background: linear-gradient(180deg, var(--red), var(--blue)); border-radius: 2px; flex-shrink: 0; }
-  .proj-stack-name { font-size: 0.875rem; font-weight: 600; }
+  .proj-stack-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.5rem 1.5rem; font-size: 0.95rem; color: #c4c4c4; }
   .proj-cta { margin-top: 4rem; display: flex; gap: 1rem; flex-wrap: wrap; }
 </style>

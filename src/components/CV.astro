@@ -180,7 +180,6 @@ const otherProjects = [
 
   <div class="cv-header fade-up">
     <div>
-      <p class="section-label" style="margin-bottom: 0.5rem;">{t('nav.cv')}</p>
       <h1 style="font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;">
         Marco Luigi <span class="gradient-text">Botrugno</span>
       </h1>
@@ -282,11 +281,7 @@ const otherProjects = [
       {skills.map(group => (
         <div>
           <p class="cv-skills-category">{group.category}</p>
-          <div class="cv-tags">
-            {group.items.map(item => (
-              <span class="badge badge-gray">{item}</span>
-            ))}
-          </div>
+          <p class="cv-skills-items">{group.items.join(' · ')}</p>
         </div>
       ))}
     </div>
@@ -308,11 +303,7 @@ const otherProjects = [
   <!-- Hobby -->
   <div class="cv-section fade-up">
     <h2 class="cv-section-title">{t('cv.hobbies')}</h2>
-    <div class="cv-tags">
-      {hobbies.map(h => (
-        <span class="badge badge-gray">{h}</span>
-      ))}
-    </div>
+    <p class="cv-skills-items">{hobbies.join(' · ')}</p>
   </div>
 
 </section>
@@ -351,11 +342,9 @@ const otherProjects = [
 
   .cv-section-title {
     font-family: 'Syne', sans-serif;
-    font-size: 0.75rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--red);
+    color: var(--text);
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -424,8 +413,8 @@ const otherProjects = [
   }
 
   .cv-note {
-    font-size: 0.8rem;
-    color: var(--blue);
+    font-size: 0.85rem;
+    color: var(--soft);
     margin-top: 0.2rem;
   }
 
@@ -436,18 +425,16 @@ const otherProjects = [
   }
 
   .cv-skills-category {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
   }
 
-  .cv-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+  .cv-skills-items {
+    font-size: 0.9rem;
+    color: var(--soft);
+    line-height: 1.7;
   }
 
   .cv-langs {
@@ -468,7 +455,7 @@ const otherProjects = [
   .cv-profile-role {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--red);
+    color: var(--red-text);
     margin-bottom: 0.75rem;
   }
 
@@ -488,7 +475,7 @@ const otherProjects = [
     text-decoration: none;
     transition: color 0.2s;
   }
-  .cv-project-link:hover { color: var(--red); }
+  .cv-project-link:hover { color: var(--red-text); }
 
   .cv-project-kind {
     font-family: 'Inter', sans-serif;
@@ -526,7 +513,7 @@ const otherProjects = [
     font-size: 0.85rem;
   }
   .cv-stores a {
-    color: var(--blue);
+    color: var(--blue-text);
     text-decoration: none;
   }
   .cv-stores a:hover { text-decoration: underline; }
@@ -553,7 +540,7 @@ const otherProjects = [
     }
     .cv-item:not(:last-child) .cv-dot::after { display: none; }
     .cv-dot { display: none; }
-    .cv-period { font-size: 0.75rem; color: var(--red); }
+    .cv-period { font-size: 0.75rem; color: var(--red-text); }
     .cv-header { flex-direction: column; align-items: flex-start; }
   }
 </style>

@@ -69,7 +69,7 @@ The code is written in pure C, compiled as a shared library (.so) and loaded via
     slug: 'matchready',
     tags: ['Vue 3', 'Ionic', 'Capacitor', 'Node.js', 'MySQL', 'Redis', 'Socket.io', 'Firebase'],
     links: {
-      github: 'https://github.com/BotrugnoMarco',
+      // repo privato: niente link GitHub
       appStore: 'https://apps.apple.com/it/app/match-ready-organizza-partite/id6761014180',
       playStore: 'https://play.google.com/store/apps/details?id=dev.botrugno.matchday',
     },

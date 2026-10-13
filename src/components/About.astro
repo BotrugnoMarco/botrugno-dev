@@ -11,8 +11,8 @@ const domains = [
   { title: 'Frontend',  skills: ['Vue 3', 'Nuxt.js', 'React', 'Astro', 'TypeScript', 'JavaScript', 'HTML & CSS', 'Bootstrap'] },
   { title: 'Backend',   skills: ['Node.js', 'Fastify', 'PHP', 'MySQL', 'Redis', 'Prisma', 'Socket.io', 'Yii'] },
   { title: 'Mobile',    skills: ['Ionic', 'Capacitor', 'Firebase', 'Android'] },
-  { title: 'Tools',     skills: ['Git', 'Docker', 'Vite', 'LaTeX'] },
-  { title: 'Languages', skills: ['C / C++', 'Java', 'Python'] },
+  { title: lang === 'it' ? 'Strumenti' : 'Tools', skills: ['Git', 'Docker', 'Vite', 'LaTeX'] },
+  { title: lang === 'it' ? 'Linguaggi' : 'Languages', skills: ['C / C++', 'Java', 'Python'] },
 ]
 
 ---
@@ -23,20 +23,13 @@ const domains = [
   <div class="section-container">
 
     <div class="section-header fade-up">
-      <p class="section-label">{t('about.label')}</p>
-      <h2 class="section-title">
-        {t('about.title')}<br /><span class="gradient-text">{t('about.title.gradient')}</span>
-      </h2>
+      <h2 class="section-title">{t('about.title')}</h2>
     </div>
 
     <div class="about-grid">
 
       <div class="fade-up delay-1">
-        <p class="about-bio">
-          {t('about.bio1.pre')} {age} {t('about.bio1.pre2')}
-          <span class="about-hl-red"> {t('about.bio1.highlight')} </span>
-          {t('about.bio1.post')}
-        </p>
+        <p class="about-bio">{t('about.bio1').replace('{age}', String(age))}</p>
         <p class="about-bio">{t('about.bio2')}</p>
         <p class="about-bio">{t('about.bio3')}</p>
 
@@ -58,11 +51,7 @@ const domains = [
           {domains.map(domain => (
             <div class="about-domain">
               <p class="about-domain-title">{domain.title}</p>
-              <div class="about-domain-items">
-                {domain.skills.map(skill => (
-                  <span class="about-skill">{skill}</span>
-                ))}
-              </div>
+              <p class="about-skills">{domain.skills.join(' · ')}</p>
             </div>
           ))}
         </div>

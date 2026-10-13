@@ -1,21 +1,24 @@
 ---
 import type { Lang } from '../i18n/ui'
 import { useTranslations } from '../i18n/utils'
+import { Image } from 'astro:assets'
+import icon from '../assets/matchready-icon.png'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
 const t = useTranslations(lang)
+const detailsHref = lang === 'en' ? '/en/projects/matchready/' : '/projects/matchready/'
 
 const PLAY_STORE = 'https://play.google.com/store/apps/details?id=dev.botrugno.matchday'
 const APP_STORE  = 'https://apps.apple.com/it/app/match-ready-organizza-partite/id6761014180'
 
 const features = [
-  { icon: '📅', label: t('mr.feat1.label'), desc: t('mr.feat1.desc') },
-  { icon: '⚡', label: t('mr.feat2.label'), desc: t('mr.feat2.desc') },
-  { icon: '🏆', label: t('mr.feat3.label'), desc: t('mr.feat3.desc') },
-  { icon: '💬', label: t('mr.feat4.label'), desc: t('mr.feat4.desc') },
-  { icon: '📍', label: t('mr.feat5.label'), desc: t('mr.feat5.desc') },
-  { icon: '🔔', label: t('mr.feat6.label'), desc: t('mr.feat6.desc') },
+  { label: t('mr.feat1.label'), desc: t('mr.feat1.desc') },
+  { label: t('mr.feat2.label'), desc: t('mr.feat2.desc') },
+  { label: t('mr.feat3.label'), desc: t('mr.feat3.desc') },
+  { label: t('mr.feat4.label'), desc: t('mr.feat4.desc') },
+  { label: t('mr.feat5.label'), desc: t('mr.feat5.desc') },
+  { label: t('mr.feat6.label'), desc: t('mr.feat6.desc') },
 ]
 ---
 
@@ -24,35 +27,20 @@ const features = [
 <section id="matchready" class="mr-section">
   <div class="section-container">
 
-    <div class="mr-header section-header fade-up">
-      <p class="section-label">{t('mr.label')}</p>
-      <h2 class="section-title">
-        {t('mr.title')}<br /><span class="gradient-text">{t('mr.title.gradient')}</span>
-      </h2>
-    </div>
-
-    <div class="mr-inner fade-up delay-1">
+    <div class="mr-inner fade-up">
 
       <div>
         <div class="mr-app-header">
-          <div class="mr-app-icon">🏆</div>
+          <Image src={icon} alt="" width={128} height={128} class="mr-app-icon" />
           <div>
-            <p class="mr-app-name">MatchReady</p>
+            <h2 class="mr-app-name">MatchReady</h2>
             <p class="mr-app-sub">{t('mr.app.sub')}</p>
           </div>
         </div>
 
         <p class="mr-description">{t('mr.description')}</p>
 
-        <div class="mr-tech">
-          <span class="badge badge-blue">Vue 3</span>
-          <span class="badge badge-blue">Ionic</span>
-          <span class="badge badge-gray">Capacitor</span>
-          <span class="badge badge-blue">Node.js</span>
-          <span class="badge badge-blue">MySQL</span>
-          <span class="badge badge-red">Firebase</span>
-          <span class="badge badge-gray">Socket.io</span>
-        </div>
+        <p class="mr-tech tech-line">Vue 3 · Ionic · Capacitor · Node.js · MySQL · Redis · Socket.io · Firebase</p>
 
         <div class="mr-stores">
           <a href={APP_STORE} target="_blank" rel="noopener noreferrer" class="mr-store-btn">
@@ -75,6 +63,8 @@ const features = [
             </div>
           </a>
         </div>
+
+        <a href={detailsHref} class="mr-details">{t('mr.details')}</a>
       </div>
 
       <div class="mr-phone-wrap">
@@ -119,20 +109,18 @@ const features = [
             </div>
           </div>
         </div>
-        <div class="mr-phone-glow"></div>
       </div>
 
     </div>
 
-    <div class="mr-features fade-up delay-2">
+    <ul class="mr-features fade-up delay-1">
       {features.map(f => (
-        <div class="mr-feature-item">
-          <div class="mr-feature-icon">{f.icon}</div>
+        <li>
           <p class="mr-feature-label">{f.label}</p>
           <p class="mr-feature-desc">{f.desc}</p>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
 
   </div>
 </section>
