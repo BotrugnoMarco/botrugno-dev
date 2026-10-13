@@ -30,14 +30,17 @@ src/
     ├── global.css
     └── components.css
 public/
-├── logo.png
+├── logo.svg                    # Logo: "botrugno" con la b tagliata in rosso e blu
+├── favicon.svg                 # La sola b, su quadrato scuro
+├── favicon.ico                 # La stessa, 16/32/48 px per i browser che non leggono l'SVG
+├── apple-touch-icon.png, icon-*.png   # Icone per iPhone e Android (npm run icons)
 ├── og.png                      # Anteprima 1200×630 per i link condivisi
-├── favicon.ico
 ├── robots.txt
 ├── CV_Marco_Luigi_Botrugno.pdf    # CV italiano, generato da cv/ (vedi sotto)
 └── CV_Marco_Luigi_Botrugno_EN.pdf # CV inglese
 cv/                             # Sorgente del CV in PDF (HTML + foto + logo)
 scripts/og/                     # Sorgente dell'immagine og.png
+scripts/icons/b.svg             # La b da cui npm run icons genera le icone PNG
 docs/nginx/                     # Configurazione nginx del server (sito + header di sicurezza)
 .github/                        # CI (build + controllo link) e Dependabot
 ```
