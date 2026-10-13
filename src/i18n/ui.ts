@@ -13,7 +13,7 @@ export const ui = {
 
     // Navbar
     'nav.about': 'Chi sono',
-    'nav.matchready': 'MatchReady',
+    'nav.matchready': 'Match Ready',
     'nav.projects': 'Progetti',
     'nav.contact': 'Contatti',
     'nav.cv': 'Curriculum',
@@ -36,14 +36,14 @@ export const ui = {
     'hero.eyebrow': 'Full-Stack Developer',
     'hero.bio': "Lavoro su front-end, back-end e app mobile, e seguo i progetti dal database fino alla pubblicazione sugli store.",
     'hero.fact.work': 'In BarbarHouse dal 2022',
-    'hero.fact.app': 'MatchReady su App Store e Play Store',
+    'hero.fact.app': 'Match Ready su App Store e Play Store',
     'hero.cta.projects': 'I miei progetti',
     'hero.cta.contact': 'Contattami',
 
     // About
     'about.title': 'Chi sono',
     "about.bio1": "Sono Marco, salentino, ho {age} anni. Dal 2022 lavoro come sviluppatore full-stack in BarbarHouse e studio Informatica all'Università di Bari.",
-    'about.bio2': "Seguo i progetti dall'inizio alla fine: database, API, interfaccia e, per le app, la pubblicazione su App Store e Play Store. MatchReady l'ho progettata, sviluppata e pubblicata da solo.",
+    'about.bio2': "Seguo i progetti dall'inizio alla fine: database, API, interfaccia e, per le app, la pubblicazione su App Store e Play Store. Match Ready l'ho progettata, sviluppata e pubblicata da solo.",
     'about.bio3': "Fuori dal codice gioco a calcetto e pallavolo, seguo il Fantacalcio e mi interesso di cybersecurity e IoT.",
     'about.personal.sport': 'Calcio',
 
@@ -73,6 +73,7 @@ export const ui = {
 
     // Contact
     'contact.label': 'Contatti',
+    'footer.privacy': 'Privacy',
     'contact.title': 'Mettiamoci in contatto',
     'contact.lead': "Hai un'idea complessa da sviluppare, un gestionale da architettare o vuoi semplicemente chiedermi consigli per l'asta del Fantacalcio? Scrivimi, rispondo sempre.",
 
@@ -93,7 +94,7 @@ export const ui = {
 
     // Navbar
     'nav.about': 'About',
-    'nav.matchready': 'MatchReady',
+    'nav.matchready': 'Match Ready',
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
     'nav.cv': 'Resume',
@@ -116,14 +117,14 @@ export const ui = {
     'hero.eyebrow': 'Full-Stack Developer',
     'hero.bio': 'I work on front-end, back-end and mobile apps, and I take projects from the database all the way to publication on the app stores.',
     'hero.fact.work': 'At BarbarHouse since 2022',
-    'hero.fact.app': 'MatchReady on the App Store and Play Store',
+    'hero.fact.app': 'Match Ready on the App Store and Play Store',
     'hero.cta.projects': 'My projects',
     'hero.cta.contact': 'Contact me',
 
     // About
     'about.title': 'About me',
     "about.bio1": "I'm Marco, from Salento, {age} years old. Since 2022 I have been working as a full-stack developer at BarbarHouse, and I study Computer Science at the University of Bari.",
-    'about.bio2': "I follow projects from start to finish: database, APIs, interface and, for apps, publication on the App Store and Play Store. I designed, built and published MatchReady on my own.",
+    'about.bio2': "I follow projects from start to finish: database, APIs, interface and, for apps, publication on the App Store and Play Store. I designed, built and published Match Ready on my own.",
     'about.bio3': 'Outside of code I play five-a-side football and volleyball, follow fantasy football and keep an eye on cybersecurity and IoT.',
     'about.personal.sport': 'Football',
 
@@ -153,6 +154,7 @@ export const ui = {
 
     // Contact
     'contact.label': 'Contact',
+    'footer.privacy': 'Privacy',
     'contact.title': 'Get in touch',
     'contact.lead': "Got a complex idea to develop, a management system to architect, or just want to ask for Fantasy Football auction tips? Write to me — I always reply.",
 

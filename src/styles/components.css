@@ -601,13 +601,14 @@
 }
 
 .footer {
-  padding: 2rem 1.5rem;
+  padding: 2rem 0;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .footer-inner {
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

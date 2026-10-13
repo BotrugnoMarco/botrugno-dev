@@ -1,0 +1,100 @@
+---
+import type { Lang } from '../i18n/ui'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const isIT = lang === 'it'
+
+const updated = isIT ? '13 ottobre 2026' : '13 October 2026'
+const homeHref = isIT ? '/' : '/en/'
+
+const sections = isIT ? [
+  {
+    title: 'Chi tratta i dati',
+    body: ['Il titolare del trattamento è Marco Luigi Botrugno. Per qualsiasi richiesta sulla privacy puoi scrivere a <a href="mailto:botrugnom7@gmail.com">botrugnom7@gmail.com</a>.'],
+  },
+  {
+    title: 'Cookie e statistiche',
+    body: [
+      'Questo sito non usa cookie di profilazione né strumenti di analisi di terze parti, e non mostra pubblicità. Per questo non c\'è un banner dei cookie.',
+      'Cloudflare, che protegge il sito, può impostare cookie tecnici necessari a riconoscere il traffico automatizzato. Sono cookie di sicurezza e non richiedono consenso.',
+    ],
+  },
+  {
+    title: 'Dati di navigazione',
+    body: [
+      'Come ogni sito, il server registra nei log le richieste ricevute: indirizzo IP, data e ora, pagina richiesta e tipo di browser. Servono solo a far funzionare il sito e a proteggerlo da abusi, non vengono usati per identificarti e vengono cancellati automaticamente dopo un periodo limitato.',
+      'Il sito passa attraverso Cloudflare, Inc., che fornisce la rete di distribuzione e la protezione da attacchi e tratta questi dati per conto del titolare. Cloudflare aderisce all\'EU-U.S. Data Privacy Framework per gli eventuali trasferimenti negli Stati Uniti. Informativa di Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a>.',
+    ],
+  },
+  {
+    title: 'Email',
+    body: ['Se mi scrivi, uso il tuo indirizzo e il contenuto del messaggio solo per risponderti.'],
+  },
+  {
+    title: 'Link ad altri siti',
+    body: ['I link verso GitHub, LinkedIn, App Store, Google Play e gli altri siti esterni portano a servizi con una propria informativa sulla privacy.'],
+  },
+  {
+    title: 'I tuoi diritti',
+    body: ['Puoi chiedere in qualsiasi momento di accedere ai tuoi dati, correggerli, cancellarli, limitarne il trattamento od opporti, scrivendo all\'indirizzo qui sopra. Puoi anche presentare reclamo al Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">garanteprivacy.it</a>).'],
+  },
+] : [
+  {
+    title: 'Who handles the data',
+    body: ['The data controller is Marco Luigi Botrugno. For any privacy request you can write to <a href="mailto:botrugnom7@gmail.com">botrugnom7@gmail.com</a>.'],
+  },
+  {
+    title: 'Cookies and statistics',
+    body: [
+      'This site does not use profiling cookies or third-party analytics, and shows no ads. That is why there is no cookie banner.',
+      'Cloudflare, which protects the site, may set technical cookies needed to recognise automated traffic. These are security cookies and do not require consent.',
+    ],
+  },
+  {
+    title: 'Browsing data',
+    body: [
+      'Like any website, the server logs incoming requests: IP address, date and time, requested page and browser type. They are used only to run the site and protect it from abuse, are not used to identify you, and are deleted automatically after a limited period.',
+      'The site runs through Cloudflare, Inc., which provides the delivery network and attack protection and processes this data on behalf of the controller. Cloudflare participates in the EU-U.S. Data Privacy Framework for any transfers to the United States. Cloudflare\'s privacy policy: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a>.',
+    ],
+  },
+  {
+    title: 'Email',
+    body: ['If you write to me, I use your address and the content of your message only to reply.'],
+  },
+  {
+    title: 'Links to other sites',
+    body: ['Links to GitHub, LinkedIn, the App Store, Google Play and other external sites lead to services with their own privacy policies.'],
+  },
+  {
+    title: 'Your rights',
+    body: ['You can ask at any time to access, correct or delete your data, restrict its processing or object to it, by writing to the address above. You can also lodge a complaint with the Italian data protection authority, the Garante per la protezione dei dati personali (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">garanteprivacy.it</a>).'],
+  },
+]
+---
+
+<section class="privacy">
+  <a href={homeHref} class="privacy-back">{isIT ? '← Torna alla home' : '← Back to home'}</a>
+
+  <h1 class="privacy-title">Privacy</h1>
+  <p class="privacy-updated">{isIT ? 'Ultimo aggiornamento' : 'Last updated'}: {updated}</p>
+
+  {sections.map(s => (
+    <div class="privacy-section">
+      <h2>{s.title}</h2>
+      {s.body.map(p => <p set:html={p} />)}
+    </div>
+  ))}
+</section>
+
+<style>
+  .privacy { max-width: 720px; margin: 0 auto; padding: 7rem 1.5rem 5rem; }
+  .privacy-back { display: inline-block; color: var(--muted); text-decoration: none; font-size: 0.875rem; margin-bottom: 2.5rem; transition: color 0.2s; }
+  .privacy-back:hover { color: var(--text); }
+  .privacy-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; }
+  .privacy-updated { color: var(--muted); font-size: 0.875rem; margin-bottom: 3rem; }
+  .privacy-section { margin-bottom: 2.25rem; }
+  .privacy-section h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .privacy-section p { color: var(--soft); line-height: 1.75; margin-bottom: 0.75rem; }
+  .privacy-section :global(a) { color: var(--blue-text); }
+</style>
