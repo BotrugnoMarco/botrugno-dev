@@ -1,11 +1,12 @@
 ---
 import type { Lang } from '../i18n/ui'
 import { useTranslations } from '../i18n/utils'
+import { age } from '../data/career.js'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
 const t = useTranslations(lang)
-const age = new Date().getFullYear() - 2001
+const years = age()
 
 const domains = [
   { title: 'Frontend',  skills: ['Vue 3', 'Nuxt.js', 'React', 'Astro', 'TypeScript', 'JavaScript', 'HTML & CSS', 'Bootstrap'] },
@@ -29,21 +30,11 @@ const domains = [
     <div class="about-grid">
 
       <div class="fade-up delay-1">
-        <p class="about-bio">{t('about.bio1').replace('{age}', String(age))}</p>
+        <p class="about-bio">{t('about.bio1').replace('{age}', String(years))}</p>
         <p class="about-bio">{t('about.bio2')}</p>
         <p class="about-bio">{t('about.bio3')}</p>
+        <p class="about-bio">{t('about.bio4')}</p>
 
-        <div style="margin-top: 2rem;">
-          <a
-            href="https://github.com/BotrugnoMarco"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-outline"
-            style="padding: 0.6rem 1.25rem; font-size: 0.875rem;"
-          >
-            GitHub ↗
-          </a>
-        </div>
       </div>
 
       <div class="fade-up delay-2">

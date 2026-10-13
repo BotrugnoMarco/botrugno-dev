@@ -31,13 +31,8 @@ h1, h2, h3, h4 {
 }
 
 /* Typography utilities */
-.text-muted { color: var(--muted); }
-.text-brand-red { color: var(--red); }
-.text-brand-blue { color: var(--blue); }
 
 /* Backgrounds */
-.bg-surface { background: var(--surface); }
-.bg-surface2 { background: var(--surface2); }
 
 /* Gradient text */
 .gradient-text {
@@ -48,11 +43,6 @@ h1, h2, h3, h4 {
 }
 
 /* Gradient line */
-.gradient-line {
-  height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--blue));
-  border-radius: 2px;
-}
 
 /* Buttons */
 .btn-red {
@@ -158,6 +148,21 @@ h1, h2, h3, h4 {
   }
   .js .fade-up { opacity: 1; transform: none; }
 }
+
+/* Link "Vai al contenuto": nascosto finché non riceve il focus da tastiera */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--text);
+  color: var(--base);
+  font-weight: 600;
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+.skip-link:focus { top: 1rem; }
 
 /* Section spacing */
 .section {

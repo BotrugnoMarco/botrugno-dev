@@ -7,6 +7,7 @@
 
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import path from 'node:path'
+import { yearsOfExperience } from '../src/data/career.js'
 
 let chromium
 try {
@@ -27,6 +28,8 @@ const page = await browser.newPage()
 for (const { src, out } of jobs) {
   await page.goto(pathToFileURL(path.join(here, src)).href, { waitUntil: 'networkidle' })
   await page.evaluate(() => document.fonts.ready)
+  // anni di esperienza calcolati al momento della generazione
+  await page.evaluate(n => document.querySelectorAll('[data-anni-esperienza]').forEach(el => { el.textContent = n }), String(yearsOfExperience()))
   await page.pdf({ path: path.join(here, out), format: 'A4', printBackground: true, preferCSSPageSize: true })
   console.log(`✓ ${src} → ${path.normalize(out)}`)
 }

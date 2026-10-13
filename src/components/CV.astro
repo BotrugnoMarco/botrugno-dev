@@ -2,6 +2,7 @@
 import type { Lang } from '../i18n/ui'
 import { useTranslations } from '../i18n/utils'
 import { getProjectBySlug } from '../data/projects'
+import { yearsOfExperience } from '../data/career.js'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
@@ -189,7 +190,7 @@ const otherProjects = [
 
   <div class="cv-profile fade-up">
     <p class="cv-profile-role">{t('cv.role')}</p>
-    <p class="cv-profile-text">{t('cv.summary')}</p>
+    <p class="cv-profile-text">{t('cv.summary').replace('{years}', String(yearsOfExperience()))}</p>
   </div>
 
   <!-- Esperienza -->

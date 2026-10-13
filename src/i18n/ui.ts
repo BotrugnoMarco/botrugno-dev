@@ -17,6 +17,7 @@ export const ui = {
     'nav.projects': 'Progetti',
     'nav.contact': 'Contatti',
     'nav.cv': 'Curriculum',
+    'nav.skip': 'Vai al contenuto',
 
     // CV page
     'cv.back': '← Torna alla home',
@@ -29,12 +30,12 @@ export const ui = {
     'cv.hobbies': 'Hobby e Interessi',
     'cv.projects': 'Progetti',
     'cv.role': 'Full-Stack Developer',
-    'cv.summary': "Sviluppatore full-stack con oltre 4 anni di esperienza. Lavoro su front-end, back-end e app mobile, e seguo i progetti dal database fino alla pubblicazione sugli store. Studio Informatica all'Università di Bari.",
+    'cv.summary': "Sviluppatore full-stack con oltre {years} anni di esperienza. Sviluppo applicazioni complete: web app, backend e API, database, app iOS e Android, fino alla messa online su server e store. Studio Informatica all'Università di Bari.",
     'cv.present': 'Presente',
 
     // Hero
     'hero.eyebrow': 'Full-Stack Developer',
-    'hero.bio': "Lavoro su front-end, back-end e app mobile, e seguo i progetti dal database fino alla pubblicazione sugli store.",
+    'hero.bio': "Sviluppo applicazioni complete, dal database all'interfaccia: web app, backend e API, app iOS e Android. Mi occupo anche di server, deploy e pubblicazione sugli store.",
     'hero.fact.work': 'In BarbarHouse dal 2022',
     'hero.fact.app': 'Match Ready su App Store e Play Store',
     'hero.cta.projects': 'I miei progetti',
@@ -43,8 +44,9 @@ export const ui = {
     // About
     'about.title': 'Chi sono',
     "about.bio1": "Sono Marco, salentino, ho {age} anni. Dal 2022 lavoro come sviluppatore full-stack in BarbarHouse e studio Informatica all'Università di Bari.",
-    'about.bio2': "Seguo i progetti dall'inizio alla fine: database, API, interfaccia e, per le app, la pubblicazione su App Store e Play Store. Match Ready l'ho progettata, sviluppata e pubblicata da solo.",
-    'about.bio3': "Fuori dal codice gioco a calcetto e pallavolo, seguo il Fantacalcio e mi interesso di cybersecurity e IoT.",
+    'about.bio2': "Seguo i progetti dall'inizio alla fine: database, API, interfaccia web e mobile, server e messa online. Match Ready l'ho progettata, sviluppata e pubblicata da solo.",
+    'about.bio3': "Gestire lo sviluppo in solitaria richiede molta agilità per saltare da una tecnologia all'altra senza mai perdere il quadro generale (una skill che, da grande fan di Spider-Man, ho sempre apprezzato).",
+    'about.bio4': "Fuori dal codice gioco a calcetto e pallavolo, seguo il Fantacalcio e mi interesso di cybersecurity e IoT.",
     'about.personal.sport': 'Calcio',
 
     // MatchReady section
@@ -74,12 +76,13 @@ export const ui = {
     // Contact
     'contact.label': 'Contatti',
     'footer.privacy': 'Privacy',
+    'footer.source': 'Codice del sito',
     'contact.title': 'Mettiamoci in contatto',
     'contact.lead': "Hai un'idea complessa da sviluppare, un gestionale da architettare o vuoi semplicemente chiedermi consigli per l'asta del Fantacalcio? Scrivimi, rispondo sempre.",
 
     // Project detail page
     'project.back': '← Tutti i progetti',
-    'project.overview': 'Overview',
+    'project.overview': 'Panoramica',
     'project.features': 'Funzionalità principali',
     'project.stack': 'Stack tecnologico',
     'project.cta.all': '← Tutti i progetti',
@@ -98,6 +101,7 @@ export const ui = {
     'nav.projects': 'Projects',
     'nav.contact': 'Contact',
     'nav.cv': 'Resume',
+    'nav.skip': 'Skip to content',
 
     // CV page
     'cv.back': '← Back to home',
@@ -110,12 +114,12 @@ export const ui = {
     'cv.hobbies': 'Hobbies & Interests',
     'cv.projects': 'Projects',
     'cv.role': 'Full-Stack Developer',
-    'cv.summary': 'Full-stack developer with over 4 years of experience. I work on front-end, back-end and mobile apps, and I take projects from the database all the way to publication on the app stores. I study Computer Science at the University of Bari.',
+    'cv.summary': "Full-stack developer with over {years} years of experience. I build complete applications: web apps, backends and APIs, databases, iOS and Android apps, all the way to going live on servers and app stores. I study Computer Science at the University of Bari.",
     'cv.present': 'Present',
 
     // Hero
     'hero.eyebrow': 'Full-Stack Developer',
-    'hero.bio': 'I work on front-end, back-end and mobile apps, and I take projects from the database all the way to publication on the app stores.',
+    'hero.bio': "I build complete applications, from the database to the interface: web apps, backends and APIs, iOS and Android apps. I also handle servers, deployment and app store releases.",
     'hero.fact.work': 'At BarbarHouse since 2022',
     'hero.fact.app': 'Match Ready on the App Store and Play Store',
     'hero.cta.projects': 'My projects',
@@ -124,8 +128,9 @@ export const ui = {
     // About
     'about.title': 'About me',
     "about.bio1": "I'm Marco, from Salento, {age} years old. Since 2022 I have been working as a full-stack developer at BarbarHouse, and I study Computer Science at the University of Bari.",
-    'about.bio2': "I follow projects from start to finish: database, APIs, interface and, for apps, publication on the App Store and Play Store. I designed, built and published Match Ready on my own.",
-    'about.bio3': 'Outside of code I play five-a-side football and volleyball, follow fantasy football and keep an eye on cybersecurity and IoT.',
+    'about.bio2': "I follow projects from start to finish: database, APIs, web and mobile interface, servers and going live. I designed, built and published Match Ready on my own.",
+    'about.bio3': "Solo development demands agility: jumping between technologies without losing sight of the big picture (a skill that, as a huge Spider-Man fan, I've always appreciated).",
+    'about.bio4': 'Outside of code I play five-a-side football and volleyball, follow fantasy football and keep an eye on cybersecurity and IoT.',
     'about.personal.sport': 'Football',
 
     // MatchReady section
@@ -155,6 +160,7 @@ export const ui = {
     // Contact
     'contact.label': 'Contact',
     'footer.privacy': 'Privacy',
+    'footer.source': 'Site source',
     'contact.title': 'Get in touch',
     'contact.lead': "Got a complex idea to develop, a management system to architect, or just want to ask for Fantasy Football auction tips? Write to me — I always reply.",
 

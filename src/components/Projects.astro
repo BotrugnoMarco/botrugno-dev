@@ -8,8 +8,8 @@ const { lang } = Astro.props
 const t = useTranslations(lang)
 
 const projectBase = lang === 'en' ? '/en/projects' : '/projects'
-// MatchReady ha già la sua sezione nella home: qui solo gli altri progetti
-const others = projects.filter(p => p.slug !== 'matchready')
+// Match Ready ha la sua sezione nella home; botrugno.dev è il sito stesso, linkato dal footer
+const others = projects.filter(p => p.slug !== 'matchready' && p.slug !== 'botrugno-dev')
 ---
 
 <div class="section-divider"></div>
@@ -21,7 +21,7 @@ const others = projects.filter(p => p.slug !== 'matchready')
       <h2 class="section-title">{t('projects.title')}</h2>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;" class="projects-grid">
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;" class="projects-grid">
       {others.map((project, i) => {
         const content = getProjectContent(project, lang)
         return (

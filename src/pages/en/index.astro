@@ -5,19 +5,9 @@ import About from '../../components/About.astro'
 import MatchReady from '../../components/MatchReady.astro'
 import Projects from '../../components/Projects.astro'
 import Contact from '../../components/Contact.astro'
+import { personSchema } from '../../data/person'
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Marco Luigi Botrugno',
-  url: 'https://botrugno.dev/en/',
-  jobTitle: 'Full-Stack Developer',
-  nationality: 'Italian',
-  sameAs: [
-    'https://github.com/BotrugnoMarco',
-    'https://www.linkedin.com/in/marco-luigi-botrugno',
-  ],
-}
+const schema = personSchema('en')
 ---
 
 <Layout lang="en" schema={schema}>
