@@ -109,9 +109,25 @@
 
 .about-grid {
   display: grid;
-  grid-template-columns: 55% 1fr;
-  gap: 5rem;
+  grid-template-columns: 280px 1fr;
+  grid-template-areas:
+    "photo text"
+    "skills skills";
+  gap: 3.5rem 4rem;
   align-items: start;
+}
+.about-text { grid-area: text; max-width: 680px; }
+.about-skills-col { grid-area: skills; }
+.about-photo { grid-area: photo; }
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 1rem;
 }
 
 /* Bio text */
@@ -122,21 +138,16 @@
   margin-bottom: 1.25rem;
 }
 
-/* Skills by domain */
+/* Skills by domain: una riga intera sotto foto e testo, divisa in colonne */
+.about-skills-col {
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
 .about-domains {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.about-domain {
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.about-domain:last-of-type {
-  border-bottom: none;
-  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
 }
 
 .about-domain-title {
@@ -534,7 +545,9 @@
    RESPONSIVE
    ---------------------------------------------------------- */
 @media (max-width: 900px) {
-  .about-grid    { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-grid    { grid-template-columns: 1fr; grid-template-areas: "photo" "text" "skills"; gap: 2.5rem; }
+  .about-photo img { max-width: 240px; }
+  .about-domains   { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
   .projects-grid { grid-template-columns: 1fr 1fr; }
   .mr-features   { grid-template-columns: repeat(2, 1fr); }
   .mr-inner      { grid-template-columns: 1fr; gap: 2.5rem; }

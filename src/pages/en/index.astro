@@ -6,8 +6,12 @@ import MatchReady from '../../components/MatchReady.astro'
 import Projects from '../../components/Projects.astro'
 import Contact from '../../components/Contact.astro'
 import { personSchema } from '../../data/person'
+import { getImage } from 'astro:assets'
+import marcoPhoto from '../../assets/marco.jpg'
 
-const schema = personSchema('en')
+// foto per i dati strutturati: URL assoluto di una versione JPG da 600 px
+const photo = await getImage({ src: marcoPhoto, width: 600, format: 'jpg' })
+const schema = { ...personSchema('en'), image: new URL(photo.src, 'https://botrugno.dev').href }
 ---
 
 <Layout lang="en" schema={schema}>

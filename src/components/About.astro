@@ -2,6 +2,8 @@
 import type { Lang } from '../i18n/ui'
 import { useTranslations } from '../i18n/utils'
 import { age } from '../data/career.js'
+import { Image } from 'astro:assets'
+import photo from '../assets/marco.jpg'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
@@ -29,7 +31,11 @@ const domains = [
 
     <div class="about-grid">
 
-      <div class="fade-up delay-1">
+      <div class="about-photo fade-up delay-1">
+        <Image src={photo} alt="Marco Luigi Botrugno" widths={[320, 640]} sizes="(max-width: 900px) 240px, 320px" loading="lazy" />
+      </div>
+
+      <div class="about-text fade-up delay-1">
         <p class="about-bio">{t('about.bio1').replace('{age}', String(years))}</p>
         <p class="about-bio">{t('about.bio2')}</p>
         <p class="about-bio">{t('about.bio3')}</p>
@@ -37,7 +43,7 @@ const domains = [
 
       </div>
 
-      <div class="fade-up delay-2">
+      <div class="about-skills-col fade-up delay-2">
         <div class="about-domains">
           {domains.map(domain => (
             <div class="about-domain">
