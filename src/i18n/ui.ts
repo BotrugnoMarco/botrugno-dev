@@ -9,7 +9,7 @@ export const ui = {
   it: {
     // Meta
     'meta.title': 'Marco Luigi Botrugno — Full-Stack Developer',
-    'meta.description': "Portfolio di Marco Luigi Botrugno, sviluppatore Full-Stack italiano specializzato in Vue, React, Node.js e sviluppo mobile con Ionic.",
+    'meta.description': "Portfolio di Marco Luigi Botrugno, sviluppatore full-stack: web app, backend e API, database, app iOS e Android, fino alla messa online.",
 
     // Navbar
     'nav.about': 'Chi sono',
@@ -93,7 +93,7 @@ export const ui = {
   en: {
     // Meta
     'meta.title': 'Marco Luigi Botrugno — Full-Stack Developer',
-    'meta.description': "Portfolio of Marco Luigi Botrugno, Italian Full-Stack Developer specialised in Vue, React, Node.js and mobile development with Ionic.",
+    'meta.description': "Portfolio of Marco Luigi Botrugno, full-stack developer: web apps, backends and APIs, databases, iOS and Android apps, all the way to going live.",
 
     // Navbar
     'nav.about': 'About',

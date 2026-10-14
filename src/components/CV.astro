@@ -3,6 +3,7 @@ import type { Lang } from '../i18n/ui'
 import { useTranslations } from '../i18n/utils'
 import { getProjectBySlug } from '../data/projects'
 import { yearsOfExperience } from '../data/career.js'
+import { versioned } from '../data/versioned'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
@@ -10,7 +11,7 @@ const t = useTranslations(lang)
 
 const isIT = lang === 'it'
 const homeHref = isIT ? '/' : '/en/'
-const pdfHref = isIT ? '/CV_Marco_Luigi_Botrugno.pdf' : '/CV_Marco_Luigi_Botrugno_EN.pdf'
+const pdfHref = versioned(isIT ? '/CV_Marco_Luigi_Botrugno.pdf' : '/CV_Marco_Luigi_Botrugno_EN.pdf')
 
 const experience = isIT ? [
   {

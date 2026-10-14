@@ -11,6 +11,7 @@ import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
 import type { Lang } from '../i18n/ui'
 import { useTranslations, getLangFromUrl } from '../i18n/utils'
+import { versioned } from '../data/versioned'
 
 interface Props {
   title?: string
@@ -37,7 +38,7 @@ const isEN = pathname.startsWith('/en')
 const itPath = isEN ? (pathname.slice(3) || '/') : pathname
 const enPath = isEN ? pathname : '/en' + pathname
 const canonicalUrl = `${SITE}${pathname}`
-const ogImage = `${SITE}/og.png`
+const ogImage = `${SITE}${versioned('/og.png')}`
 ---
 
 <!doctype html>
@@ -65,8 +66,8 @@ const ogImage = `${SITE}/og.png`
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
     <meta property="og:image:alt" content="Marco Luigi Botrugno — Full-Stack Developer" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
