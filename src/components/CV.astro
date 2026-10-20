@@ -85,7 +85,17 @@ const education = isIT ? [
   },
 ]
 
+// Data Masters: i link di verifica sono pubblici (verified.cv)
+const dm = (id) => `https://data-masters-srl.verified.cv/${isIT ? 'it' : 'en'}/verify/${id}`
+const CERTIFICATIONS_PROFILE = 'https://verified.sertifier.com/en/profile/marcobotrugno3554779/'
+
 const certifications = [
+  { year: '2026', title: isIT ? 'Fondamenti di AI Security' : 'AI Security Fundamentals', issuer: 'Data Masters', url: dm('85011806419978') },
+  { year: '2026', title: isIT ? 'AI Act in Azienda' : 'AI Act in the Workplace', issuer: 'Data Masters', url: dm('93212571761729') },
+  { year: '2026', title: 'Python from Zero to Hero', issuer: 'Data Masters', url: dm('16440554301459') },
+  { year: '2026', title: 'Python Week', issuer: 'Data Masters', url: dm('67233555355907') },
+  { year: '2026', title: 'Data Week', issuer: 'Data Masters', url: dm('61376454345896') },
+  { year: '2026', title: isIT ? 'Intelligenza Artificiale per HR' : 'Artificial Intelligence for HR', issuer: 'Data Masters', url: dm('64373075888354') },
   {
     year: '2019',
     title: 'Introduction to Cybersecurity',
@@ -269,11 +279,22 @@ const otherProjects = [
           <div class="cv-dot"></div>
           <div class="cv-content">
             <p class="cv-role">{item.title}</p>
-            <p class="cv-company">{item.issuer}</p>
+            <p class="cv-company">
+              {item.issuer}
+              {item.url && (
+                <>
+                  {' · '}
+                  <a class="cv-verify" href={item.url} target="_blank" rel="noopener">{isIT ? 'verifica' : 'verify'}</a>
+                </>
+              )}
+            </p>
           </div>
         </div>
       ))}
     </div>
+    <p class="cv-all-certs">
+      <a href={CERTIFICATIONS_PROFILE} target="_blank" rel="noopener">{isIT ? 'Tutte le certificazioni verificate' : 'All verified certifications'} →</a>
+    </p>
   </div>
 
   <!-- Competenze -->
@@ -412,6 +433,23 @@ const otherProjects = [
     font-size: 0.85rem;
     color: var(--muted);
     line-height: 1.4;
+  }
+
+  .cv-verify,
+  .cv-all-certs a {
+    color: var(--blue-text);
+    text-decoration: none;
+  }
+
+  .cv-verify:hover,
+  .cv-all-certs a:hover {
+    text-decoration: underline;
+  }
+
+  .cv-all-certs {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 1rem;
   }
 
   .cv-note {
