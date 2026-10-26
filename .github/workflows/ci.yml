@@ -35,5 +35,6 @@ jobs:
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-retries 2 --accept 200,429 'dist/**/*.html'
+          # LinkedIn risponde 999 a qualsiasi client automatico: escluso
+          args: --no-progress --max-retries 2 --accept 200,429 --root-dir ${{ github.workspace }}/dist --exclude 'linkedin\.com' 'dist/**/*.html'
           fail: true
