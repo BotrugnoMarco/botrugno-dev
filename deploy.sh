@@ -22,7 +22,8 @@ cd "$APP_DIR"
 echo "→ Installazione dipendenze..."
 npm ci
 echo "→ Build..."
-npm run build
+# Il backend di Match Ready è sullo stesso server: i suoi numeri si leggono senza passare da Cloudflare.
+MATCHREADY_STATS_URL="http://127.0.0.1:3000/api/public/stats" npm run build
 
 # Il CV (public/CV_Marco_Luigi_Botrugno.pdf) ora è nel repo e finisce in dist/ con la build.
 

@@ -1,0 +1,56 @@
+---
+// Schermate vere di Match Ready per la pagina progetto: sono le immagini dello store,
+// una serie per lingua. Nomi e partite che si vedono sono inventati.
+// Se cambia la grafica dell'app, vanno ricopiate da match-ready-store/google-play-telefono.
+import type { Lang } from '../i18n/ui'
+import { useTranslations } from '../i18n/utils'
+import { Image } from 'astro:assets'
+import homeIt from '../assets/matchready/it/01-home.png'
+import lineupIt from '../assets/matchready/it/05-formazioni.png'
+import mvpIt from '../assets/matchready/it/06-mvp.png'
+import homeEn from '../assets/matchready/en/01-home.png'
+import lineupEn from '../assets/matchready/en/05-formazioni.png'
+import mvpEn from '../assets/matchready/en/06-mvp.png'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+const isEn = lang === 'en'
+
+const shots = [
+  { src: isEn ? homeEn : homeIt, alt: t('mr.shot.home') },
+  { src: isEn ? lineupEn : lineupIt, alt: t('mr.shot.lineup') },
+  { src: isEn ? mvpEn : mvpIt, alt: t('mr.shot.mvp') },
+]
+---
+
+<ul class="shots">
+  {shots.map((shot) => (
+    <li><Image src={shot.src} alt={shot.alt} width={520} loading="lazy" /></li>
+  ))}
+</ul>
+
+<style>
+  .shots {
+    list-style: none;
+    margin: 0 0 3rem;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .shots img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+  }
+  @media (max-width: 600px) {
+    .shots {
+      grid-template-columns: repeat(3, 70%);
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+    }
+    .shots li { scroll-snap-align: start; }
+  }
+</style>

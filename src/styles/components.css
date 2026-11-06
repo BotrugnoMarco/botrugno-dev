@@ -193,7 +193,6 @@
   width: 64px;
   height: 64px;
   border-radius: 16px;
-  background: #fff;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -218,6 +217,43 @@
   line-height: 1.8;
   margin-bottom: 1.75rem;
   max-width: 520px;
+}
+
+/* Numeri reali dell'app: testo semplice, senza schede */
+.mr-stats {
+  margin-bottom: 1.75rem;
+}
+
+.mr-stats-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  margin: 0 0 0.6rem;
+}
+
+/* Nell'HTML l'etichetta viene prima, come vuole <dl>; a video il numero sta sopra. */
+.mr-stats-item {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* Inter e non Syne: le cifre di Syne sono disuguali, "3.702" si legge "3.7o2". */
+.mr-stats-value {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.mr-stats-label {
+  font-size: 0.875rem;
+  color: var(--soft);
+}
+
+.mr-stats-note {
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 .mr-tech {
@@ -270,179 +306,13 @@
 }
 .mr-details:hover { text-decoration: underline; }
 
-/* Phone mockup */
-.mr-phone-wrap {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.mr-phone {
-  width: 200px;
-  height: 380px;
-  border-radius: 32px;
-  border: 2px solid rgba(255,255,255,0.1);
-  background: #070710;
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    0 40px 80px rgba(0,0,0,0.6),
-    0 0 0 1px rgba(255,255,255,0.04),
-    inset 0 0 40px rgba(204,20,20,0.03);
-}
-
-.mr-phone::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 52px;
-  height: 5px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
-  z-index: 10;
-}
-
-.mr-phone-screen {
-  position: absolute;
-  inset: 28px 0 0;
-  padding: 0 10px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.mr-phone-topbar {
-  padding: 6px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  margin-bottom: 2px;
-}
-
-.mr-phone-topbar-title {
-  font-size: 8px;
-  font-weight: 700;
-  color: var(--red);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.mr-phone-topbar-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--red);
-  opacity: 0.7;
-  animation: pulse-dot 2s infinite;
-}
-
-.mr-phone-match-card {
-  background: rgba(204,20,20,0.08);
-  border: 1px solid rgba(204,20,20,0.15);
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.mr-phone-match-title {
-  font-size: 7px;
-  color: var(--muted);
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.mr-phone-teams {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mr-phone-team-name {
-  font-size: 8px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.mr-phone-score {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--red);
-  font-family: 'Syne', monospace;
-}
-
-.mr-phone-pitch {
-  flex: 1;
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 6px;
-  background: rgba(255,255,255,0.015);
-  position: relative;
-  overflow: hidden;
-}
-
-.mr-phone-pitch::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  right: 8px;
-  height: 1px;
-  background: rgba(255,255,255,0.05);
-}
-
-.mr-pitch-circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-.mr-player {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 6px;
-  font-weight: 700;
-  color: white;
-}
-
-.mr-player-red { background: rgba(204,20,20,0.8); box-shadow: 0 0 6px rgba(204,20,20,0.4); }
-.mr-player-blue { background: rgba(18,64,204,0.8); box-shadow: 0 0 6px rgba(18,64,204,0.4); }
-
-.mr-phone-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
-}
-
-.mr-phone-stat-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 5px;
-  padding: 6px;
-}
-
-.mr-phone-stat-val {
-  font-size: 11px;
-  font-weight: 800;
-  font-family: 'Syne', sans-serif;
-  color: var(--text);
-}
-
-.mr-phone-stat-key {
-  font-size: 6px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+/* Schermata vera dell'app (immagine dello store, una per lingua) */
+.mr-shot {
+  display: block;
+  width: 260px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 18px;
 }
 
 /* Funzioni: elenco semplice su tre colonne */
@@ -551,7 +421,7 @@
   .projects-grid { grid-template-columns: 1fr 1fr; }
   .mr-features   { grid-template-columns: repeat(2, 1fr); }
   .mr-inner      { grid-template-columns: 1fr; gap: 2.5rem; }
-  .mr-phone-wrap { display: none; }
+  .mr-shot       { justify-self: center; }
 }
 
 @media (max-width: 600px) {
@@ -561,7 +431,3 @@
 }
 
 /* Animations */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 0.7; }
-  50%       { opacity: 0.2; }
-}

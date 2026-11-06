@@ -74,6 +74,7 @@ The code is written in pure C, compiled as a shared library (.so) and loaded via
     tags: ['Vue 3', 'Ionic', 'Capacitor', 'Node.js', 'MySQL', 'Redis', 'Socket.io', 'Firebase'],
     links: {
       // repo privato: niente link GitHub
+      live: 'https://matchready.botrugno.dev/landing.html',
       appStore: 'https://apps.apple.com/it/app/match-ready-organizza-partite/id6761014180',
       playStore: 'https://play.google.com/store/apps/details?id=dev.botrugno.matchday',
     },
@@ -81,7 +82,7 @@ The code is written in pure C, compiled as a shared library (.so) and loaded via
       title: 'Match Ready',
       tagline: "Organizza partite amatoriali di qualsiasi sport. Tutto in un'app.",
       description:
-        "WebApp mobile-first per la gestione di partite amatoriali: eventi, formazioni, chat real-time, pagelle post-partita e classifiche. Monorepo con frontend Vue/Ionic, backend Node.js e app native iOS e Android. Pubblicata su App Store e Play Store.",
+        "WebApp mobile-first per la gestione di partite amatoriali di calcio, padel, tennis, pallavolo e basket: iscrizioni, formazioni, chat real-time, pagelle post-partita e classifica. Monorepo con frontend Vue/Ionic, backend Node.js e app native iOS e Android. Pubblicata su App Store e Play Store.",
       metaDescription: 'Match Ready, app iOS e Android per organizzare partite amatoriali tra amici: eventi, formazioni, chat in tempo reale, pagelle e classifiche.',
       longDescription: `Match Ready nasce dall'esigenza concreta di organizzare partite tra amici senza il caos dei gruppi WhatsApp. È una WebApp mobile-first costruita come monorepo: frontend Vue 3 + Ionic, backend Node.js/Express, e una landing page statica — tutto sviluppato e mantenuto da solo.
 
@@ -89,13 +90,15 @@ Il frontend usa Vue 3 (Composition API) con Ionic per i componenti mobile-native
 
 Il backend espone API REST e WebSocket (Socket.io) con autenticazione JWT, rate limiting e sicurezza via Helmet. MySQL gestisce i dati relazionali, Redis il pub/sub di Socket.io tra le istanze del server. Firebase Cloud Messaging invia notifiche push a iOS e Android per ogni evento di dominio rilevante.
 
-La parte più interessante è il sistema di gamification post-partita: votazione dei giocatori, calcolo automatico delle pagelle, MVP della partita e classifiche cumulative della stagione.`,
+La parte più interessante è il sistema post-partita: i giocatori si votano a vicenda, le pagelle si calcolano in automatico tenendo conto di quanto è affidabile ogni votante, e i voti aggiornano il livello di ognuno, con cui l'app bilancia le squadre della partita successiva.`,
       features: [
-        'Creazione eventi con data, luogo, costi e gestione posti',
-        'Formazioni interattive (Team A vs Team B) con drag-and-drop',
-        "Real-time via Socket.io (sala d'attesa, aggiornamento posti, chat)",
-        'Votazione post-partita, pagelle, MVP e classifiche stagione',
-        'Mappe interattive (Leaflet) per la selezione del campo',
+        'Calcio a 5, 7, 8 e 11, padel, tennis, pallavolo e basket',
+        'Creazione partite con data, luogo, costi, posti e lista d\'attesa',
+        'Squadre bilanciate sul livello dei giocatori, formazioni interattive con drag-and-drop',
+        "Real-time via Socket.io (aggiornamento posti, chat)",
+        'Votazione post-partita, pagelle, MVP, livello per sport e classifica tra amici',
+        'Squadre con stemma e colori, sfide tra squadre',
+        'Mappe interattive (Leaflet) per le partite vicine e la selezione del campo',
         'Notifiche push iOS/Android tramite Firebase Cloud Messaging',
         'App iOS e Android con Capacitor, pubblicate su App Store e Play Store',
       ],
@@ -104,7 +107,7 @@ La parte più interessante è il sistema di gamification post-partita: votazione
       title: 'Match Ready',
       tagline: 'Organize amateur matches for any sport. All in one app.',
       description:
-        'A mobile-first WebApp for managing amateur sports matches: events, line-ups, real-time chat, post-match ratings and leaderboards. Monorepo with Vue/Ionic frontend, Node.js backend and native iOS and Android apps. Published on the App Store and Play Store.',
+        'A mobile-first WebApp for managing amateur football, padel, tennis, volleyball and basketball matches: sign-ups, line-ups, real-time chat, post-match ratings and standings. Monorepo with Vue/Ionic frontend, Node.js backend and native iOS and Android apps. Published on the App Store and Play Store.',
       metaDescription: 'Match Ready, an iOS and Android app for organising amateur matches among friends: events, line-ups, real-time chat, player ratings and standings.',
       longDescription: `Match Ready was born out of a real need to organize matches with friends without the chaos of WhatsApp groups. It's a mobile-first WebApp built as a monorepo: Vue 3 + Ionic frontend, Node.js/Express backend, and a static landing page — all developed and maintained solo.
 
@@ -112,13 +115,15 @@ The frontend uses Vue 3 (Composition API) with Ionic for mobile-native component
 
 The backend exposes REST APIs and WebSockets (Socket.io) with JWT authentication, rate limiting and Helmet security. MySQL handles relational data, Redis handles Socket.io pub/sub across server instances. Firebase Cloud Messaging delivers push notifications to iOS and Android for every relevant domain event.
 
-The most interesting part is the post-match gamification system: player voting, automatic ratings calculation, match MVP and cumulative season leaderboards.`,
+The most interesting part is the post-match system: players rate each other, ratings are calculated automatically taking into account how reliable each voter is, and the votes update everyone's level, which the app uses to balance the teams for the next match.`,
       features: [
-        'Event creation with date, venue, costs and seat management',
-        'Interactive line-ups (Team A vs Team B) with drag-and-drop',
-        'Real-time via Socket.io (waiting room, seat updates, chat)',
-        'Post-match voting, ratings, MVP and season leaderboards',
-        'Interactive maps (Leaflet) for field selection',
+        '5, 7, 8 and 11-a-side football, padel, tennis, volleyball and basketball',
+        'Match creation with date, venue, costs, spots and waitlist',
+        'Teams balanced on player level, interactive line-ups with drag-and-drop',
+        'Real-time via Socket.io (spot updates, chat)',
+        'Post-match voting, ratings, MVP, level per sport and a leaderboard among friends',
+        'Teams with crest and colors, challenges between teams',
+        'Interactive maps (Leaflet) for nearby matches and field selection',
         'iOS/Android push notifications via Firebase Cloud Messaging',
         'iOS and Android apps built with Capacitor, published on the App Store and Play Store',
       ],

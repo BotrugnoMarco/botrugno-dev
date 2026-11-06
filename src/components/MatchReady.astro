@@ -3,10 +3,22 @@ import type { Lang } from '../i18n/ui'
 import { useTranslations } from '../i18n/utils'
 import { Image } from 'astro:assets'
 import icon from '../assets/matchready-icon.png'
+import homeIt from '../assets/matchready/it/01-home.png'
+import homeEn from '../assets/matchready/en/01-home.png'
+import { getMatchReadyStats } from '../data/matchreadyStats'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
 const t = useTranslations(lang)
+const homeShot = lang === 'en' ? homeEn : homeIt
+
+const stats = await getMatchReadyStats()
+const number = new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'it-IT', { useGrouping: 'always' })
+const figures = stats && [
+  { value: number.format(stats.matches_played), label: t('mr.stats.matches') },
+  { value: number.format(stats.appearances), label: t('mr.stats.appearances') },
+  { value: number.format(stats.ratings), label: t('mr.stats.ratings') },
+]
 const detailsHref = lang === 'en' ? '/en/projects/matchready/' : '/projects/matchready/'
 
 const PLAY_STORE = 'https://play.google.com/store/apps/details?id=dev.botrugno.matchday'
@@ -40,6 +52,20 @@ const features = [
 
         <p class="mr-description">{t('mr.description')}</p>
 
+        {figures && (
+          <div class="mr-stats">
+            <dl class="mr-stats-list">
+              {figures.map((figure) => (
+                <div class="mr-stats-item">
+                  <dt class="mr-stats-label">{figure.label}</dt>
+                  <dd class="mr-stats-value">{figure.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p class="mr-stats-note">{t('mr.stats.note')}</p>
+          </div>
+        )}
+
         <p class="mr-tech tech-line">Vue 3 · Ionic · Capacitor · Node.js · MySQL · Redis · Socket.io · Firebase</p>
 
         <div class="mr-stores">
@@ -67,49 +93,7 @@ const features = [
         <a href={detailsHref} class="mr-details">{t('mr.details')}</a>
       </div>
 
-      <div class="mr-phone-wrap">
-        <div class="mr-phone">
-          <div class="mr-phone-screen">
-            <div class="mr-phone-topbar">
-              <span class="mr-phone-topbar-title">Match Ready</span>
-              <span class="mr-phone-topbar-dot"></span>
-            </div>
-            <div class="mr-phone-match-card">
-              <p class="mr-phone-match-title">{t('mr.mock.match')}</p>
-              <div class="mr-phone-teams">
-                <span class="mr-phone-team-name">Team A</span>
-                <span class="mr-phone-score">3 · 2</span>
-                <span class="mr-phone-team-name">Team B</span>
-              </div>
-            </div>
-            <div class="mr-phone-pitch">
-              <div class="mr-pitch-circle"></div>
-              <div class="mr-player mr-player-red" style="top:12%;left:50%;transform:translateX(-50%)">1</div>
-              <div class="mr-player mr-player-red" style="top:28%;left:18%">3</div>
-              <div class="mr-player mr-player-red" style="top:28%;left:50%;transform:translateX(-50%)">5</div>
-              <div class="mr-player mr-player-red" style="top:28%;right:18%">4</div>
-              <div class="mr-player mr-player-red" style="top:44%;left:26%">8</div>
-              <div class="mr-player mr-player-red" style="top:44%;right:26%">10</div>
-              <div class="mr-player mr-player-blue" style="bottom:12%;left:50%;transform:translateX(-50%)">1</div>
-              <div class="mr-player mr-player-blue" style="bottom:28%;left:18%">2</div>
-              <div class="mr-player mr-player-blue" style="bottom:28%;left:50%;transform:translateX(-50%)">6</div>
-              <div class="mr-player mr-player-blue" style="bottom:28%;right:18%">3</div>
-              <div class="mr-player mr-player-blue" style="bottom:44%;left:26%">7</div>
-              <div class="mr-player mr-player-blue" style="bottom:44%;right:26%">11</div>
-            </div>
-            <div class="mr-phone-stats">
-              <div class="mr-phone-stat-card">
-                <p class="mr-phone-stat-val">12</p>
-                <p class="mr-phone-stat-key">{t('mr.mock.players')}</p>
-              </div>
-              <div class="mr-phone-stat-card">
-                <p class="mr-phone-stat-val">⭐ 8.4</p>
-                <p class="mr-phone-stat-key">MVP rating</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Image src={homeShot} alt={t('mr.shot.home')} width={520} class="mr-shot" />
 
     </div>
 

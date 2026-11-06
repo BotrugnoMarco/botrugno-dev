@@ -1,5 +1,8 @@
 # build output
 dist/
+# cartelle temporanee di scripts/aggiorna-numeri.sh
+dist-nuova/
+dist-vecchia/
 # generated types
 .astro/
 .history/

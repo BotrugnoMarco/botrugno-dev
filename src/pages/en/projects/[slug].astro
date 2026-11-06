@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro'
+import MatchReadyShots from '../../../components/MatchReadyShots.astro'
 import { projects, getProjectBySlug, getProjectContent } from '../../../data/projects'
 import { useTranslations } from '../../../i18n/utils'
 
@@ -90,6 +91,8 @@ if (project.links.appStore || project.links.playStore) {
   </section>
 
   <div class="proj-container proj-content-wrap">
+
+    {project.slug === 'matchready' && <MatchReadyShots lang={lang} />}
 
     <div class="proj-section fade-up">
       <h2 class="proj-section-title">{t('project.overview')}</h2>
