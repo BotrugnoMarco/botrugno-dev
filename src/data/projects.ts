@@ -130,6 +130,62 @@ The most interesting part is the post-match system: players rate each other, rat
     },
   },
   {
+    slug: 'ledimoredidaniela',
+    tags: ['Astro', 'TypeScript', 'PHP', 'PHPMailer', 'Zod', 'nginx'],
+    links: {
+      // lavoro per un cliente, repo privato: niente link GitHub
+      live: 'https://ledimoredidaniela.it',
+    },
+    it: {
+      title: 'Le Dimore di Daniela',
+      tagline: 'Sito per case vacanza a Capilungo, in Salento, realizzato per un cliente.',
+      description:
+        "Sito per case vacanza in Salento, realizzato per un cliente: scheda dell'alloggio, galleria, recensioni e richiesta di disponibilità in quattro lingue. Ho curato anche logo e identità grafica.",
+      metaDescription: 'Sito per case vacanza in Salento realizzato per un cliente: Astro e PHP, quattro lingue, richiesta di disponibilità via email, logo e identità grafica.',
+      longDescription: `Le Dimore di Daniela sono villette per le vacanze a Capilungo, sulla costa ionica del Salento. Il sito non gestisce prenotazioni né pagamenti: l'ospite sceglie le date e invia una richiesta di disponibilità, oppure scrive su WhatsApp. Il proprietario riceve un'email e lo ricontatta; l'ospite riceve una conferma automatica nella sua lingua. Ho fatto tutto io: logo e identità grafica, sito, server e deploy.
+
+Il sito è statico, generato con Astro, senza database né CMS. Ogni alloggio è un file Markdown validato da uno schema Zod durante la build. Le lingue sono quattro: italiano, inglese, francese e tedesco. Orari, regole e letti sono dati strutturati che il sito formula in ogni lingua; i testi liberi hanno le traduzioni affiancate e la build si ferma se ne manca una.
+
+L'unica parte dinamica è il modulo di richiesta: un endpoint PHP con PHPMailer, l'unico che nginx espone, con il codice fuori dalla document root. La build genera un file properties.json che l'API usa per validare alloggio e numero di ospiti, così i dati stanno in un solo posto. Il modulo funziona anche senza JavaScript; contro lo spam ci sono honeypot, rate limit e Cloudflare Turnstile.
+
+Il sito gira su un VPS con nginx e HTTPS di Let's Encrypt. Ogni deploy crea una release separata: il sito cambia solo se la build riesce e si può tornare alla versione precedente.`,
+      features: [
+        "Italiano, inglese, francese e tedesco, con la conferma all'ospite nella sua lingua",
+        "Richiesta di disponibilità con calendario che parte dal periodo di apertura e ricorda arrivi e soggiorno minimo",
+        'Contenuti in Markdown validati con Zod: la build si ferma se manca una traduzione',
+        'Modulo che funziona anche senza JavaScript, con honeypot, rate limit e Cloudflare Turnstile',
+        'Endpoint PHP con test PHPUnit, codice fuori dalla document root',
+        'Galleria di 35 foto, recensioni di Booking e Airbnb, domande frequenti',
+        'Logo e identità grafica: guida, colori, icone e anteprima dei link',
+        'Deploy su VPS con nginx, una release per ogni deploy e rollback',
+      ],
+    },
+    en: {
+      title: 'Le Dimore di Daniela',
+      tagline: 'Website for holiday homes in Capilungo, Salento, built for a client.',
+      description:
+        'Website for holiday homes in Salento, built for a client: property page, gallery, reviews and availability requests in four languages. I also designed the logo and visual identity.',
+      metaDescription: 'Website for holiday homes in Salento built for a client: Astro and PHP, four languages, availability requests by email, logo and visual identity.',
+      longDescription: `Le Dimore di Daniela are holiday villas in Capilungo, on the Ionian coast of Salento. The site handles no bookings or payments: guests pick their dates and send an availability request, or message on WhatsApp. The owner gets an email and contacts them; the guest gets an automatic confirmation in their own language. I did all of it: logo and visual identity, website, server and deployment.
+
+The site is static, generated with Astro, with no database or CMS. Each property is a Markdown file validated by a Zod schema at build time. There are four languages: Italian, English, French and German. Times, rules and beds are structured data that the site phrases in each language; free text has its translations side by side, and the build stops if one is missing.
+
+The only dynamic part is the request form: a PHP endpoint with PHPMailer, the only one nginx exposes, with the code outside the document root. The build generates a properties.json file that the API uses to validate the property and number of guests, so the data lives in one place. The form works without JavaScript too; spam is handled with a honeypot, rate limiting and Cloudflare Turnstile.
+
+The site runs on a VPS with nginx and Let's Encrypt HTTPS. Each deployment creates a separate release: the site only changes if the build succeeds, and it can roll back to the previous version.`,
+      features: [
+        'Italian, English, French and German, with the guest confirmation in their own language',
+        'Availability request with a calendar that starts from the opening period and shows arrival days and minimum stay',
+        'Markdown content validated with Zod: the build stops if a translation is missing',
+        'Form that works without JavaScript, with a honeypot, rate limiting and Cloudflare Turnstile',
+        'PHP endpoint with PHPUnit tests, code outside the document root',
+        'Gallery of 35 photos, Booking and Airbnb reviews, FAQ',
+        'Logo and visual identity: guide, colours, icons and link preview image',
+        'Deployment on a VPS with nginx, one release per deployment and rollback',
+      ],
+    },
+  },
+  {
     slug: 'botrino',
     tags: ['Python', 'discord.py', 'MySQL'],
     links: {

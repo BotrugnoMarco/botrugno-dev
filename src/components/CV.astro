@@ -146,7 +146,19 @@ const featured = {
     : ['Matches with sign-ups, costs and waitlist', 'Teams balanced by level, line-ups on the pitch', 'Real-time chat with Socket.io', 'Push notifications on iOS and Android', 'Player ratings, MVP and a leaderboard among friends', 'Nearby matches and pitch selection on a map'],
   stack: 'Vue 3, Ionic, Capacitor, Node.js, MySQL, Redis, Socket.io, Firebase',
 }
+const ledimore = getProjectBySlug('ledimoredidaniela')
 const otherProjects = [
+  {
+    slug: 'ledimoredidaniela',
+    title: 'Le Dimore di Daniela',
+    kind: isIT ? 'sito per un cliente' : 'client website',
+    description: isIT
+      ? 'Sito per case vacanza in Salento, in quattro lingue, con richiesta di disponibilità via email. Ho curato anche logo e identità grafica.'
+      : 'Website for holiday homes in Salento, in four languages, with availability requests by email. I also designed the logo and visual identity.',
+    stack: 'Astro, TypeScript, PHP, PHPMailer, nginx',
+    live: ledimore?.links.live,
+    wide: true,
+  },
   {
     slug: 'shipflow',
     title: 'ShipFlow',
@@ -239,13 +251,18 @@ const otherProjects = [
     </div>
     <div class="cv-projects-grid">
       {otherProjects.map(p => (
-        <div>
+        <div class={p.wide ? 'cv-project-wide' : undefined}>
           <p class="cv-role">
             <a href={`${projectBase}/${p.slug}/`} class="cv-project-link">{p.title} ↗</a>
             <span class="cv-project-kind">{p.kind}</span>
           </p>
           <p class="cv-company">{p.description}</p>
           <p class="cv-stack">{p.stack}</p>
+          {p.live && (
+            <p class="cv-stores">
+              <a href={p.live} target="_blank" rel="noopener noreferrer">{p.live.replace('https://', '')} ↗</a>
+            </p>
+          )}
         </div>
       ))}
     </div>
@@ -557,6 +574,8 @@ const otherProjects = [
     text-decoration: none;
   }
   .cv-stores a:hover { text-decoration: underline; }
+
+  .cv-project-wide { grid-column: 1 / -1; }
 
   .cv-projects-grid {
     display: grid;

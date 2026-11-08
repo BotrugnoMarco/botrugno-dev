@@ -1,0 +1,59 @@
+---
+// Schermate di ledimoredidaniela.it per la pagina progetto: una da computer e tre da telefono,
+// una serie per lingua. Si rifanno dal sito online con: node scripts/ledimoredidaniela-shots.mjs
+import type { Lang } from '../i18n/ui'
+import { useTranslations } from '../i18n/utils'
+import { Image } from 'astro:assets'
+import desktopIt from '../assets/ledimoredidaniela/it/desktop.jpg'
+import homeIt from '../assets/ledimoredidaniela/it/mobile-home.jpg'
+import infoIt from '../assets/ledimoredidaniela/it/mobile-info.jpg'
+import calendarIt from '../assets/ledimoredidaniela/it/mobile-calendar.jpg'
+import desktopEn from '../assets/ledimoredidaniela/en/desktop.jpg'
+import homeEn from '../assets/ledimoredidaniela/en/mobile-home.jpg'
+import infoEn from '../assets/ledimoredidaniela/en/mobile-info.jpg'
+import calendarEn from '../assets/ledimoredidaniela/en/mobile-calendar.jpg'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useTranslations(lang)
+const isEn = lang === 'en'
+
+const desktop = isEn ? desktopEn : desktopIt
+const phones = [
+  { src: isEn ? homeEn : homeIt, alt: t('ldd.shot.home') },
+  { src: isEn ? infoEn : infoIt, alt: t('ldd.shot.info') },
+  { src: isEn ? calendarEn : calendarIt, alt: t('ldd.shot.calendar') },
+]
+---
+
+<div class="ldd-shots">
+  <Image src={desktop} alt={t('ldd.shot.desktop')} width={1720} widths={[860, 1720]} sizes="(max-width: 900px) 100vw, 860px" class="ldd-desktop" />
+  <ul class="ldd-phones">
+    {phones.map((shot) => (
+      <li><Image src={shot.src} alt={shot.alt} width={520} loading="lazy" /></li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .ldd-shots { margin: 0 0 3rem; display: flex; flex-direction: column; gap: 1rem; }
+  .ldd-shots img { display: block; width: 100%; height: auto; }
+  .ldd-desktop { border-radius: 10px; }
+  .ldd-phones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .ldd-phones img { border-radius: 14px; }
+  @media (max-width: 600px) {
+    .ldd-phones {
+      grid-template-columns: repeat(3, 70%);
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+    }
+    .ldd-phones li { scroll-snap-align: start; }
+  }
+</style>
