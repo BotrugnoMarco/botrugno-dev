@@ -70,6 +70,7 @@ check "header HSTS presente"                 "echo \"\$H\" | grep -qi '^strict-t
 check "header CSP presente"                  "echo \"\$H\" | grep -qi '^content-security-policy'"
 check "/cv/ risponde 200"                    "curl -sI https://botrugno.dev/cv/ | head -1 | grep -q ' 200'"
 check "CV inglese risponde 200"              "curl -sI https://botrugno.dev/CV_Marco_Luigi_Botrugno_EN.pdf | head -1 | grep -q ' 200'"
+check "CV con ?v= ha il canonical senza ?v=" "curl -sI 'https://botrugno.dev/CV_Marco_Luigi_Botrugno_EN.pdf?v=prova' | grep -qi '^link: <https://botrugno.dev/CV_Marco_Luigi_Botrugno_EN.pdf>; rel=\"canonical\"'"
 check "pagina inesistente risponde 404"      "curl -sI https://botrugno.dev/pagina-che-non-esiste/ | head -1 | grep -q ' 404'"
 check "www rimanda a botrugno.dev"           "curl -sI https://www.botrugno.dev/ | grep -qi '^location: https://botrugno.dev/'"
 
