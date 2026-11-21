@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import lastmod from './integrations/lastmod.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +15,8 @@ export default defineConfig({
         locales: { it: 'it-IT', en: 'en-US' },
       },
     }),
+    // dopo sitemap(): aggiunge <lastmod> al file che sitemap() ha appena scritto
+    lastmod(),
   ],
   vite: {
     plugins: [tailwindcss()],

@@ -1,11 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import CV from '../components/CV.astro'
+import { cvSchema } from '../data/schema'
+
+const title = 'Curriculum Vitae — Marco Luigi Botrugno'
+const schema = await cvSchema('it', title)
 ---
 
 <Layout
   lang="it"
-  title="Curriculum Vitae — Marco Luigi Botrugno"
+  title={title}
+  schema={schema}
   description="Curriculum vitae di Marco Luigi Botrugno, sviluppatore Full-Stack con esperienza in Vue, React, Node.js, Fastify e sviluppo mobile con Ionic."
 >
   <CV lang="it" />

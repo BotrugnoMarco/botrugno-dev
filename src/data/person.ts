@@ -1,12 +1,29 @@
 import type { Lang } from '../i18n/ui'
 
-// Dati strutturati (schema.org Person) della home, uguali in italiano e in inglese
-export function personSchema(lang: Lang) {
+export const SITE = 'https://botrugno.dev'
+
+// Identificativi schema.org: la stessa persona e lo stesso sito su tutte le pagine.
+// Con lo stesso @id, Google e i motori AI capiscono che l'autore dei progetti
+// è la persona descritta in home e nel CV.
+export const PERSON_ID = `${SITE}/#person`
+export const WEBSITE_ID = `${SITE}/#website`
+
+/** Riferimento breve alla persona, per author e creator nelle altre pagine */
+export const personRef = {
+  '@type': 'Person',
+  '@id': PERSON_ID,
+  name: 'Marco Luigi Botrugno',
+  url: `${SITE}/`,
+}
+
+// Dati strutturati (schema.org Person), uguali in italiano e in inglese a parte la descrizione
+export function personSchema(lang: Lang, image?: string) {
   return {
-    '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': PERSON_ID,
     name: 'Marco Luigi Botrugno',
-    url: lang === 'en' ? 'https://botrugno.dev/en/' : 'https://botrugno.dev/',
+    url: `${SITE}/`,
+    ...(image && { image }),
     jobTitle: 'Full-Stack Developer',
     description: lang === 'en'
       ? 'Full-stack developer: web apps, backends and APIs, databases, iOS and Android apps.'
@@ -27,6 +44,47 @@ export function personSchema(lang: Lang) {
     sameAs: [
       'https://github.com/BotrugnoMarco',
       'https://www.linkedin.com/in/marco-luigi-botrugno',
+    ],
+  }
+}
+
+/** schema.org WebSite: Google lo legge in home per il nome del sito nei risultati */
+export function websiteSchema() {
+  return {
+    '@type': 'WebSite',
+    '@id': WEBSITE_ID,
+    url: `${SITE}/`,
+    name: 'botrugno.dev',
+    alternateName: 'Marco Luigi Botrugno',
+    inLanguage: ['it-IT', 'en-US'],
+    publisher: { '@id': PERSON_ID },
+  }
+}
+
+/**
+ * schema.org ProfilePage per le pagine dedicate a Marco (home e CV), con la persona
+ * come mainEntity. `pathname` è il percorso della pagina, con lo slash finale.
+ */
+export function profilePageSchema(lang: Lang, pathname: string, name: string, image?: string) {
+  const url = `${SITE}${pathname}`
+  return {
+    '@type': 'ProfilePage',
+    '@id': `${url}#page`,
+    url,
+    name,
+    inLanguage: lang === 'en' ? 'en-US' : 'it-IT',
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntity: personSchema(lang, image),
+  }
+}
+
+/** Percorso di due livelli: home della lingua → pagina */
+export function breadcrumbSchema(lang: Lang, name: string, url: string) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'botrugno.dev', item: lang === 'en' ? `${SITE}/en/` : `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name, item: url },
     ],
   }
 }

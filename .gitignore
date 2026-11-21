@@ -3,6 +3,8 @@ dist/
 # cartelle temporanee di scripts/aggiorna-numeri.sh
 dist-nuova/
 dist-vecchia/
+# date di modifica delle pagine per la sitemap (integrations/lastmod.mjs)
+.cache/
 # generated types
 .astro/
 .history/
