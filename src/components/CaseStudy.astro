@@ -1,0 +1,51 @@
+---
+// Case study di un progetto (campo caseStudy in projects.ts), al posto della panoramica.
+// Una stringa è un paragrafo, un array un elenco. I segnaposto {matches}, {appearances} e
+// {ratings} diventano i numeri di Match Ready letti alla build; senza numeri il paragrafo sparisce.
+import type { CaseStudySection } from '../data/projects'
+import type { Lang } from '../i18n/ui'
+import { getMatchReadyStats } from '../data/matchreadyStats'
+
+interface Props {
+  sections: CaseStudySection[]
+  lang: Lang
+}
+const { sections, lang } = Astro.props
+
+const stats = await getMatchReadyStats()
+const number = new Intl.NumberFormat(lang === 'en' ? 'en-US' : 'it-IT', { useGrouping: 'always' })
+const values: Record<string, number> | null = stats && {
+  matches: stats.matches_played,
+  appearances: stats.appearances,
+  ratings: stats.ratings,
+}
+
+function fill(text: string): string | null {
+  if (!/\{(matches|appearances|ratings)\}/.test(text)) return text
+  if (!values) return null
+  return text.replace(/\{(matches|appearances|ratings)\}/g, (_, key: string) => number.format(values[key]))
+}
+---
+
+<div class="cs">
+  {sections.map((section) => (
+    <section class="cs-section fade-up">
+      <h2 class="cs-title">{section.title}</h2>
+      {section.blocks.map((block) => {
+        if (Array.isArray(block)) return <ul class="cs-list">{block.map((item) => <li>{item}</li>)}</ul>
+        const text = fill(block)
+        return text && <p>{text}</p>
+      })}
+    </section>
+  ))}
+</div>
+
+<style>
+  .cs { display: flex; flex-direction: column; gap: 3rem; }
+  .cs-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: -0.02em; }
+  .cs-section { display: flex; flex-direction: column; gap: 1rem; }
+  .cs-section p { font-size: 1rem; line-height: 1.75; color: #c4c4c4; }
+  .cs-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.7rem; }
+  .cs-list li { position: relative; padding-left: 1.35rem; font-size: 1rem; line-height: 1.7; color: #c4c4c4; }
+  .cs-list li::before { content: ''; position: absolute; left: 0; top: 0.72rem; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+</style>

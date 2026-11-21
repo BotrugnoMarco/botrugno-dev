@@ -6,8 +6,23 @@ export interface ProjectContent {
   description: string
   /** Testo breve per Google (meta description), al massimo 155 caratteri */
   metaDescription: string
-  longDescription: string
+  /** Panoramica in paragrafi separati da una riga vuota; non serve se c'è caseStudy */
+  longDescription?: string
+  /** Case study al posto della panoramica (vedi CaseStudy.astro) */
+  caseStudy?: CaseStudySection[]
   features: string[]
+}
+
+/**
+ * Un blocco del case study: una stringa è un paragrafo, un array è un elenco puntato.
+ * Un paragrafo con {matches}, {appearances} e {ratings} mostra i numeri di Match Ready
+ * letti alla build (matchreadyStats.ts); se il backend non risponde, il paragrafo sparisce.
+ */
+export type CaseStudyBlock = string | string[]
+
+export interface CaseStudySection {
+  title: string
+  blocks: CaseStudyBlock[]
 }
 
 export interface Project {
@@ -84,13 +99,71 @@ The code is written in pure C, compiled as a shared library (.so) and loaded via
       description:
         "WebApp mobile-first per la gestione di partite amatoriali di calcio, padel, tennis, pallavolo e basket: iscrizioni, formazioni, chat real-time, pagelle post-partita e classifica. Monorepo con frontend Vue/Ionic, backend Node.js e app native iOS e Android. Pubblicata su App Store e Play Store.",
       metaDescription: 'Match Ready, app iOS e Android per organizzare partite amatoriali tra amici: eventi, formazioni, chat in tempo reale, pagelle e classifiche.',
-      longDescription: `Match Ready nasce dall'esigenza concreta di organizzare partite tra amici senza il caos dei gruppi WhatsApp. È una WebApp mobile-first costruita come monorepo: frontend Vue 3 + Ionic, backend Node.js/Express, e una landing page statica — tutto sviluppato e mantenuto da solo.
-
-Il frontend usa Vue 3 (Composition API) con Ionic per i componenti mobile-native e Capacitor per le app iOS e Android. La navigazione è ottimizzata per touch, le mappe sono gestite con Leaflet per la selezione interattiva del campo da gioco.
-
-Il backend espone API REST e WebSocket (Socket.io) con autenticazione JWT, rate limiting e sicurezza via Helmet. MySQL gestisce i dati relazionali, Redis il pub/sub di Socket.io tra le istanze del server. Firebase Cloud Messaging invia notifiche push a iOS e Android per ogni evento di dominio rilevante.
-
-La parte più interessante è il sistema post-partita: i giocatori si votano a vicenda, le pagelle si calcolano in automatico tenendo conto di quanto è affidabile ogni votante, e i voti aggiornano il livello di ognuno, con cui l'app bilancia le squadre della partita successiva.`,
+      caseStudy: [
+        {
+          title: 'Il problema',
+          blocks: [
+            "Ogni settimana, nel gruppo del calcetto, la stessa scena: decine di messaggi per capire chi c'è, qualcuno che si ritira all'ultimo e la caccia al decimo giocatore. Poi le squadre, fatte a occhio, che finiscono 9 a 1.",
+            "Match Ready toglie tutta questa parte. Crei la partita, mandi il link nel gruppo, vedi chi c'è e quanti posti mancano, e le squadre si fanno in base al livello di ognuno. A fine partita ci si danno i voti, si elegge l'MVP e arrivano premi e badge.",
+          ],
+        },
+        {
+          title: 'Cosa ho fatto',
+          blocks: [
+            "L'ho progettata e sviluppata da solo, nel tempo libero: app iOS e Android, web app, backend, server e pubblicazione sugli store. Ho iniziato a dicembre 2025 e oggi è su App Store e Google Play. A luglio 2026 si è aggiunto il basket, a fine ottobre la versione 3.0 ha rifatto da capo la grafica.",
+          ],
+        },
+        {
+          title: 'Come è fatta',
+          blocks: [
+            [
+              'Interfaccia: un solo codice per tre piattaforme, con Vue 3 e Ionic; Capacitor produce le app native per iOS e Android.',
+              'Backend: Node.js con Express e MySQL.',
+              'Tempo reale: Socket.io per posti, chat e voti, con Redis che distribuisce gli eventi tra le istanze del server.',
+              'Notifiche push: Firebase.',
+              'Server: una VPS con nginx e PM2.',
+              'Servizi esterni: meteo da OpenMeteo, indirizzi da OpenStreetMap.',
+            ],
+          ],
+        },
+        {
+          title: 'La parte difficile: il voto',
+          blocks: [
+            'Il voto è il punto in cui un errore lascia il segno. Un voto perso o contato due volte cambia il livello di un giocatore, e il livello decide le squadre delle partite successive.',
+            'Il calcolo:',
+            [
+              "ogni votante ha un'affidabilità: chi vota in linea con gli altri pesa di più, chi vota a caso o per ripicca sempre meno;",
+              "i voti isolati e lontani dalla media (scostamento assoluto e z-score) pesano poco e abbassano l'affidabilità di chi li dà;",
+              "il voto della partita è una media ponderata sull'affidabilità, e da lì esce l'MVP di ogni squadra;",
+              "il livello si calibra nelle prime cinque partite, poi pesa per l'85% la storia e per il 15% l'ultima partita; ogni sport ha il suo.",
+            ],
+            "Poi c'è tutto quello che succede attorno. Si vota dal telefono, al campo, subito dopo aver giocato:",
+            [
+              "i voti si danno su un mazzo di carte e si inviano insieme. Le bozze restano salvate sul telefono, così una chiamata o un'app chiusa per sbaglio non le cancella;",
+              "l'invio è una sola richiesta: o passano tutti i voti o nessuno. Un vincolo unico nel database, che all'inizio mancava, impedisce i doppioni quando la richiesta si ripete dopo un timeout;",
+              "la partita si chiude quando hanno votato tutti quelli attesi, oppure dopo 24 ore. Stabilire chi è \"atteso\" è stato meno banale del previsto: per un periodo contava anche chi aveva rifiutato l'invito, e la partita restava aperta per un voto che non sarebbe mai arrivato.",
+            ],
+            'Le regole di chiusura hanno test dedicati, perché un errore lì non dà nessun messaggio: la partita semplicemente non si chiude più da sola.',
+          ],
+        },
+        {
+          title: 'Dove è arrivata',
+          blocks: [
+            'È gratis su App Store e Google Play, per calcio, padel, tennis, pallavolo e basket.',
+            'Fin qui: {matches} partite giocate, {appearances} presenze in campo e {ratings} voti ai compagni.',
+          ],
+        },
+        {
+          title: 'Cosa rifarei',
+          blocks: [
+            [
+              'Far girare i test in automatico a ogni rilascio, invece di lanciarli a mano, e dare un test anche al calcolo del livello.',
+              "L'invito come gesto principale fin dalla prima versione. Ci sono arrivato con la 3.0, che è partita proprio da lì.",
+              "Le regole che app e server devono conoscere entrambi, come l'elenco dei premi di fine partita, le scriverei in un posto solo. Oggi sono in due file, uno per parte: se ne aggiorno uno e dimentico l'altro, l'app mostra un premio che il server poi rifiuta.",
+            ],
+          ],
+        },
+      ],
       features: [
         'Calcio a 5, 7, 8 e 11, padel, tennis, pallavolo e basket',
         'Creazione partite con data, luogo, costi, posti e lista d\'attesa',
@@ -109,13 +182,71 @@ La parte più interessante è il sistema post-partita: i giocatori si votano a v
       description:
         'A mobile-first WebApp for managing amateur football, padel, tennis, volleyball and basketball matches: sign-ups, line-ups, real-time chat, post-match ratings and standings. Monorepo with Vue/Ionic frontend, Node.js backend and native iOS and Android apps. Published on the App Store and Play Store.',
       metaDescription: 'Match Ready, an iOS and Android app for organising amateur matches among friends: events, line-ups, real-time chat, player ratings and standings.',
-      longDescription: `Match Ready was born out of a real need to organize matches with friends without the chaos of WhatsApp groups. It's a mobile-first WebApp built as a monorepo: Vue 3 + Ionic frontend, Node.js/Express backend, and a static landing page — all developed and maintained solo.
-
-The frontend uses Vue 3 (Composition API) with Ionic for mobile-native components and Capacitor for the iOS and Android apps. Navigation is optimized for touch, with Leaflet handling interactive map-based field selection.
-
-The backend exposes REST APIs and WebSockets (Socket.io) with JWT authentication, rate limiting and Helmet security. MySQL handles relational data, Redis handles Socket.io pub/sub across server instances. Firebase Cloud Messaging delivers push notifications to iOS and Android for every relevant domain event.
-
-The most interesting part is the post-match system: players rate each other, ratings are calculated automatically taking into account how reliable each voter is, and the votes update everyone's level, which the app uses to balance the teams for the next match.`,
+      caseStudy: [
+        {
+          title: 'The problem',
+          blocks: [
+            "Every week, in the five-a-side group chat, the same scene: dozens of messages to work out who's in, someone dropping out at the last minute and the hunt for the tenth player. Then teams picked by eye that end 9–1.",
+            "Match Ready removes all of that. You create the match, send the link to the group, see who's in and how many spots are left, and teams are made based on each player's level. After the match everyone rates each other, the MVP is chosen and awards and badges come in.",
+          ],
+        },
+        {
+          title: 'What I did',
+          blocks: [
+            "I designed and built it on my own, in my spare time: iOS and Android apps, web app, backend, server and store releases. I started in December 2025 and it's now on the App Store and Google Play. Basketball was added in July 2026, and at the end of October version 3.0 redid the whole design.",
+          ],
+        },
+        {
+          title: "How it's built",
+          blocks: [
+            [
+              'Interface: one codebase for three platforms, with Vue 3 and Ionic; Capacitor builds the native iOS and Android apps.',
+              'Backend: Node.js with Express and MySQL.',
+              'Real time: Socket.io for spots, chat and votes, with Redis spreading events across server instances.',
+              'Push notifications: Firebase.',
+              'Server: a VPS with nginx and PM2.',
+              'External services: weather from OpenMeteo, addresses from OpenStreetMap.',
+            ],
+          ],
+        },
+        {
+          title: 'The hard part: voting',
+          blocks: [
+            "Voting is where a mistake leaves a mark. A vote lost or counted twice changes a player's level, and the level decides the teams for the following matches.",
+            'The calculation:',
+            [
+              'every voter has a reliability score: those who vote in line with the others count more, those who vote at random or out of spite count less and less;',
+              'isolated votes far from the average (absolute deviation and z-score) carry little weight and lower the reliability of whoever cast them;',
+              'the match rating is an average weighted by reliability, and it decides the MVP of each team;',
+              'the level is calibrated over the first five matches, then weighs history at 85% and the latest match at 15%; each sport has its own.',
+            ],
+            'Then there is everything around it. People vote from their phone, at the pitch, right after playing:',
+            [
+              "votes are given on a deck of cards and sent together. Drafts stay saved on the phone, so a call or an app closed by mistake doesn't wipe them;",
+              'sending is a single request: either all the votes go through or none do. A unique constraint in the database, missing at first, prevents duplicates when the request is retried after a timeout;',
+              'the match closes when everyone expected has voted, or after 24 hours. Deciding who is "expected" was less trivial than it looked: for a while it included people who had declined the invitation, and the match stayed open waiting for a vote that would never come.',
+            ],
+            'The closing rules have their own tests, because a mistake there gives no error message: the match simply stops closing on its own.',
+          ],
+        },
+        {
+          title: 'Where it is now',
+          blocks: [
+            "It's free on the App Store and Google Play, for football, padel, tennis, volleyball and basketball.",
+            'So far: {matches} matches played, {appearances} player appearances and {ratings} teammate ratings.',
+          ],
+        },
+        {
+          title: "What I'd do differently",
+          blocks: [
+            [
+              'Run the tests automatically at every release instead of by hand, and give the level calculation a test of its own.',
+              'Make inviting the main action from the first version. I got there with 3.0, which started from exactly that.',
+              "I'd keep the rules both the app and the server need to know, such as the list of end-of-match awards, in one place. Today they live in two files, one per side: if I update one and forget the other, the app shows an award that the server then rejects.",
+            ],
+          ],
+        },
+      ],
       features: [
         '5, 7, 8 and 11-a-side football, padel, tennis, volleyball and basketball',
         'Match creation with date, venue, costs, spots and waitlist',

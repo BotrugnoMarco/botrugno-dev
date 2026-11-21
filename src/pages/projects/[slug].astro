@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro'
 import MatchReadyShots from '../../components/MatchReadyShots.astro'
 import LeDimoreShots from '../../components/LeDimoreShots.astro'
 import BotrinoShots from '../../components/BotrinoShots.astro'
+import CaseStudy from '../../components/CaseStudy.astro'
 import { projects, getProjectBySlug, getProjectContent } from '../../data/projects'
 import { useTranslations } from '../../i18n/utils'
 import { projectSchema } from '../../data/schema'
@@ -75,12 +76,16 @@ const schema = projectSchema(project, content, lang)
     {project.slug === 'ledimoredidaniela' && <LeDimoreShots lang={lang} />}
     {project.slug === 'botrino' && <BotrinoShots lang={lang} />}
 
-    <div class="proj-section fade-up">
-      <h2 class="proj-section-title">{t('project.overview')}</h2>
-      <div class="proj-long-desc">
-        {content.longDescription.split('\n\n').map(paragraph => <p>{paragraph}</p>)}
+    {content.caseStudy ? (
+      <CaseStudy sections={content.caseStudy} lang={lang} />
+    ) : (
+      <div class="proj-section fade-up">
+        <h2 class="proj-section-title">{t('project.overview')}</h2>
+        <div class="proj-long-desc">
+          {content.longDescription?.split('\n\n').map(paragraph => <p>{paragraph}</p>)}
+        </div>
       </div>
-    </div>
+    )}
 
     <div class="section-divider" style="margin: 3rem 0;"></div>
 
