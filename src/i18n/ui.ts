@@ -18,6 +18,7 @@ export const ui = {
     'nav.contact': 'Contatti',
     'nav.cv': 'Curriculum',
     'nav.skip': 'Vai al contenuto',
+    'nav.lang': 'Versione inglese (EN)',
 
     // CV page
     'cv.back': '← Torna alla home',
@@ -58,9 +59,11 @@ export const ui = {
     'mr.stats.appearances': 'presenze in campo',
     'mr.stats.ratings': 'voti ai compagni',
     'mr.stats.note': "Numeri reali dell'app, aggiornati ogni giorno.",
+    'mr.shots': 'Schermate di Match Ready',
     'mr.shot.home': 'Schermata di Match Ready: la prossima partita, con chi c\'è e chi manca',
     'mr.shot.lineup': 'Schermata di Match Ready: le formazioni sul campo',
     'mr.shot.mvp': 'Schermata di Match Ready: risultato, MVP e podio a fine partita',
+    'ldd.shots': 'Schermate di Le Dimore di Daniela da telefono',
     'ldd.shot.desktop': 'Le Dimore di Daniela da computer: titolo, punti di forza e foto della casa',
     'ldd.shot.home': 'Le Dimore di Daniela da telefono: inizio della pagina',
     'ldd.shot.info': 'Le Dimore di Daniela da telefono: check-in, periodo di apertura e soggiorno minimo',
@@ -111,6 +114,7 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.cv': 'Resume',
     'nav.skip': 'Skip to content',
+    'nav.lang': 'Italian version (IT)',
 
     // CV page
     'cv.back': '← Back to home',
@@ -151,9 +155,11 @@ export const ui = {
     'mr.stats.appearances': 'player appearances',
     'mr.stats.ratings': 'teammate ratings',
     'mr.stats.note': 'Real numbers from the app, updated daily.',
+    'mr.shots': 'Match Ready screenshots',
     'mr.shot.home': "Match Ready screen: your next match, with who's in and who's missing",
     'mr.shot.lineup': 'Match Ready screen: line-ups on the pitch',
     'mr.shot.mvp': 'Match Ready screen: result, MVP and podium after the match',
+    'ldd.shots': 'Le Dimore di Daniela phone screenshots',
     'ldd.shot.desktop': 'Le Dimore di Daniela on a computer: heading, highlights and photos of the house',
     'ldd.shot.home': 'Le Dimore di Daniela on a phone: top of the page',
     'ldd.shot.info': 'Le Dimore di Daniela on a phone: check-in, opening period and minimum stay',

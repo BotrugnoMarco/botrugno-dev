@@ -463,7 +463,12 @@ const otherProjects = [
     text-decoration: none;
   }
 
-  .cv-verify:hover,
+  /* Dentro la riga di testo: sottolineato, così non si riconosce solo dal colore */
+  .cv-verify {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   .cv-all-certs a:hover {
     text-decoration: underline;
   }

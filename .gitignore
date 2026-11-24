@@ -29,3 +29,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Report di Lighthouse CI (npx @lhci/cli autorun)
+.lighthouseci/
+
+# Copertina Ko-fi (npm run kofi), si rigenera quando serve
+scripts/og/kofi.png

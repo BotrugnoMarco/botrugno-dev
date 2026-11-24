@@ -28,7 +28,7 @@ const phones = [
 
 <div class="ldd-shots">
   <Image src={desktop} alt={t('ldd.shot.desktop')} width={1720} widths={[860, 1720]} sizes="(max-width: 900px) 100vw, 860px" class="ldd-desktop" />
-  <ul class="ldd-phones">
+  <ul class="ldd-phones" tabindex="0" aria-label={t('ldd.shots')}>
     {phones.map((shot) => (
       <li><Image src={shot.src} alt={shot.alt} width={520} loading="lazy" /></li>
     ))}

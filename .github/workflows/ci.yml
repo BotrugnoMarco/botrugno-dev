@@ -25,6 +25,11 @@ jobs:
       - name: Il CV è presente nella build
         run: test -f dist/CV_Marco_Luigi_Botrugno.pdf && test -f dist/CV_Marco_Luigi_Botrugno_EN.pdf
 
+      # Soglie in lighthouserc.json: accessibilità e SEO a 100, buone pratiche almeno 95.
+      # Le prestazioni danno solo un avviso: sui runner di GitHub il punteggio cambia da un giro all'altro.
+      - name: Lighthouse
+        run: npx --yes @lhci/cli@0.15 autorun
+
       - name: Link interni (offline)
         uses: lycheeverse/lychee-action@v2
         with:

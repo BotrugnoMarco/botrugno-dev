@@ -34,15 +34,17 @@ public/
 ├── favicon.svg                 # La sola b, su quadrato scuro
 ├── favicon.ico                 # La stessa, 16/32/48 px per i browser che non leggono l'SVG
 ├── apple-touch-icon.png, icon-*.png   # Icone per iPhone e Android (npm run icons)
-├── og.png                      # Anteprima 1200×630 per i link condivisi
+├── og.png                      # Anteprima 1200×630 per i link condivisi (home e pagine senza la loro)
+├── og/                         # Anteprime di progetti e CV (npm run og)
 ├── robots.txt
 ├── CV_Marco_Luigi_Botrugno.pdf    # CV italiano, generato da cv/ (vedi sotto)
 └── CV_Marco_Luigi_Botrugno_EN.pdf # CV inglese
 cv/                             # Sorgente del CV in PDF (HTML + foto + logo)
-scripts/og/                     # Sorgente dell'immagine og.png
+scripts/og/                     # Sorgenti delle anteprime (og.html, page.html) e della copertina Ko-fi (kofi.html)
 scripts/icons/b.svg             # La b da cui npm run icons genera le icone PNG
 docs/nginx/                     # Configurazione nginx del server (sito + header di sicurezza)
-.github/                        # CI (build + controllo link) e Dependabot
+lighthouserc.json               # Soglie di Lighthouse usate dalla CI
+.github/                        # CI (build, Lighthouse, controllo link) e Dependabot
 ```
 
 ## Pagine
@@ -63,12 +65,15 @@ npm install       # installa le dipendenze
 npm run dev       # dev server su localhost:4321
 npm run build     # build in ./dist/
 npm run preview   # anteprima della build
+npm run og        # anteprime dei link: og.png, progetti e CV (serve Playwright)
+npm run kofi      # copertina Ko-fi 3:1 in scripts/og/kofi.png (serve Playwright)
 ```
 
 ## Aggiungere un progetto
 
 1. Aggiungere una voce all'array `projects` in `src/data/projects.ts` con i campi `slug`, `tags`, `links`, `it` e `en`
 2. La pagina detail viene generata automaticamente da `[slug].astro`
+3. `npm run og` crea la sua anteprima `public/og/<slug>.png` (senza, la pagina usa `og.png`)
 
 ## CV in PDF
 

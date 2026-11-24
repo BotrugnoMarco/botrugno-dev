@@ -19,6 +19,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Focus da tastiera: il contorno predefinito del browser si vede poco sul fondo nero */
+:focus-visible {
+  outline: 2px solid var(--blue-text);
+  outline-offset: 3px;
+}
+
 body {
   background-color: var(--base);
   color: var(--text);

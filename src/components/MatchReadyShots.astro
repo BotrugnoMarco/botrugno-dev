@@ -24,7 +24,7 @@ const shots = [
 ]
 ---
 
-<ul class="shots">
+<ul class="shots" tabindex="0" aria-label={t('mr.shots')}>
   {shots.map((shot) => (
     <li><Image src={shot.src} alt={shot.alt} width={520} loading="lazy" /></li>
   ))}

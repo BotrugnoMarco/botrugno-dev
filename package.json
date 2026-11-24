@@ -12,7 +12,8 @@
     "astro": "astro",
     "cv": "node cv/build-cv.mjs",
     "icons": "node scripts/icons.mjs",
-    "og": "node scripts/og/build-og.mjs"
+    "og": "node scripts/og/build-og.mjs",
+    "kofi": "node scripts/og/build-og.mjs kofi"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

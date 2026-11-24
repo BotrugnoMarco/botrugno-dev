@@ -23,7 +23,7 @@ const content = getProjectContent(project, lang)
 const schema = projectSchema(project, content, lang)
 ---
 
-<Layout lang={lang} title={`${content.title} — Marco Luigi Botrugno`} description={content.metaDescription} schema={schema}>
+<Layout lang={lang} title={`${content.title} — Marco Luigi Botrugno`} description={content.metaDescription} schema={schema} ogImage={`/og/${project.slug}.png`} ogImageAlt={`${content.title} — Marco Luigi Botrugno, Full-Stack Developer`}>
 
   <div class="back-bar">
     <a href="/#projects" class="back-link">

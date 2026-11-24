@@ -11,7 +11,7 @@ import Navbar from '../components/Navbar.astro'
 import Footer from '../components/Footer.astro'
 import type { Lang } from '../i18n/ui'
 import { useTranslations, getLangFromUrl } from '../i18n/utils'
-import { versioned } from '../data/versioned'
+import { versioned, inPublic } from '../data/versioned'
 
 interface Props {
   title?: string
@@ -20,6 +20,10 @@ interface Props {
   schema?: Record<string, unknown> | Record<string, unknown>[]
   /** Pagine da non indicizzare (es. 404): niente canonical, hreflang né sitemap */
   noindex?: boolean
+  /** Anteprima della pagina in public/ (es. /og/matchready.png, da npm run og); se manca si usa /og.png */
+  ogImage?: string
+  /** Testo alternativo dell'anteprima della pagina */
+  ogImageAlt?: string
 }
 
 const lang: Lang = Astro.props.lang ?? getLangFromUrl(Astro.url)
@@ -32,13 +36,16 @@ const {
   noindex = false,
 } = Astro.props
 
+const pageOg = Astro.props.ogImage && inPublic(Astro.props.ogImage)
+
 const SITE = 'https://botrugno.dev'
 const pathname = Astro.url.pathname
 const isEN = pathname.startsWith('/en')
 const itPath = isEN ? (pathname.slice(3) || '/') : pathname
 const enPath = isEN ? pathname : '/en' + pathname
 const canonicalUrl = `${SITE}${pathname}`
-const ogImage = `${SITE}${versioned('/og.png')}`
+const ogImage = `${SITE}${versioned(pageOg ? Astro.props.ogImage! : '/og.png')}`
+const ogImageAlt = pageOg && Astro.props.ogImageAlt ? Astro.props.ogImageAlt : 'Marco Luigi Botrugno — Full-Stack Developer'
 ---
 
 <!doctype html>
@@ -68,7 +75,7 @@ const ogImage = `${SITE}${versioned('/og.png')}`
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="2400" />
     <meta property="og:image:height" content="1260" />
-    <meta property="og:image:alt" content="Marco Luigi Botrugno — Full-Stack Developer" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={lang === 'it' ? 'it_IT' : 'en_US'} />
